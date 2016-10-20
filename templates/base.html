@@ -32,11 +32,8 @@
          Multiple lines will require custom code not provided by Bootstrap. -->
     <div class="masthead">
         <nav>
-            <div class="navbar-header">
-                <a href="{% url 'mainSite:index'  %}" class="navbar-brand">Project name</a>
-            </div>
             <ul class="nav nav-justified navbar-fixed-top">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="{% url 'mainSite:index' %}">Home</a></li>
                 <li><a href="#">Projects</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="#">Downloads</a></li>
