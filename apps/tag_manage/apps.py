@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class TagManageConfig(AppConfig):
-    name = 'tag_manage'
+    name = 'apps.tag_manage'
