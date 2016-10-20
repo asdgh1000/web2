@@ -18,7 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     # 默认目录
-    url(r'^', include('mainSite.urls')),
+    url(r'^', include('myblog.urls')),
     # 管理目录
     url(r'^admin/', admin.site.urls),
 ]

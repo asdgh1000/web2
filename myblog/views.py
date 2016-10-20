@@ -7,4 +7,4 @@ def index(request):
         "title": "Hello Wood!",
         "body": "你好，wood！"
     }
-    return render(request, 'mainSite/index.html', context)
+    return render(request, 'myblog/index.html', context)
