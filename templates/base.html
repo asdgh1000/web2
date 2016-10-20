@@ -31,9 +31,11 @@
     <!-- The justified navigation menu is meant for single line per list item.
          Multiple lines will require custom code not provided by Bootstrap. -->
     <div class="masthead">
-        <h3 class="text-muted">Project name</h3>
         <nav>
-            <ul class="nav nav-justified">
+            <div class="navbar-header">
+                <a href="{% url 'mainSite:index'  %}" class="navbar-brand">Project name</a>
+            </div>
+            <ul class="nav nav-justified navbar-fixed-top">
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#">Projects</a></li>
                 <li><a href="#">Services</a></li>
