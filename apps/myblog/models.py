@@ -5,10 +5,10 @@ from ..tag_manage.models import Tag
 
 
 class BlogInfo(BaseModel):
-    title = models.CharField(max_length=255)
-    file_path = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, default='')
+    file_path = models.CharField(max_length=255, default='')
     comment_count = models.IntegerField(default=0)
-    cover_img = models.CharField(max_length=255)
+    cover_img = models.CharField(max_length=255, default='')
     favor_count = models.IntegerField(default=0)
     dislike_count = models.IntegerField(default=0)
 
@@ -16,7 +16,7 @@ class BlogInfo(BaseModel):
 class BlogComment(BaseModel):
     blog_info = models.ForeignKey(BlogInfo, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User)
-    content = models.TextField()
+    content = models.TextField(default='')
     reply_comment = models.ForeignKey('self', on_delete=models.CASCADE)
 
 
