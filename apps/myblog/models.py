@@ -14,12 +14,12 @@ class BlogInfo(BaseModel):
 
 
 class BlogComment(BaseModel):
-    blog_info_id = models.ForeignKey(BlogInfo, on_delete=models.CASCADE)
+    blog_info = models.ForeignKey(BlogInfo, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User)
     content = models.TextField()
-    reply_comment_id = models.ForeignKey('self', on_delete=models.CASCADE)
+    reply_comment = models.ForeignKey('self', on_delete=models.CASCADE)
 
 
 class BlogTagRelation(BaseModel):
-    tag_id = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    blog_info_id = models.ForeignKey(BlogInfo, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    blog_info = models.ForeignKey(BlogInfo, on_delete=models.CASCADE)
