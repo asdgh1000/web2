@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class MainsiteConfig(AppConfig):
+class MyblogConfig(AppConfig):
     name = 'apps.myblog'
