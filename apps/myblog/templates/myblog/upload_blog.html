@@ -4,6 +4,7 @@
 {% endblock %}
 {% block content %}
     <form action="{% url 'myblog:upload_blog' %}" method="post">
+        {% csrf_token %}
         <div class="form-group">
             <label for="file">File input</label>
             <input type="file" id="file" name="file">

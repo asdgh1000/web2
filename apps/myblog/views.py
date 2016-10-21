@@ -1,6 +1,5 @@
 from django.shortcuts import render, render_to_response
 from .forms import UploadFileForm
-from django.http import HttpResponseRedirect
 from ..base.utils import save_file
 import os
 
@@ -22,7 +21,11 @@ def upload_blog(request):
         file_name = form.file_name
         if form.is_valid():
             save_file(blog_fd, base_path + file_name)
-            return HttpResponseRedirect('/')
+            context = {
+                "title": "Hello Wood!",
+                "body": "你好，wood！"
+            }
+            return render(request, 'myblog/index.html', context)
     else:
         form = UploadFileForm()
     return render_to_response('myblog/upload_blog.html', {'form': form})
