@@ -33,13 +33,13 @@ body {
 }
 
 .my-content{
-  min-height: 512px;
+  min-height: 500px;
 }
 
 /* Customize container */
 @media (min-width: 768px) {
   .container {
-    max-width: 1024px;
+    max-width: 1000px;
   }
 }
 .container-narrow > hr {
