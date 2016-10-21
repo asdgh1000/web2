@@ -10,6 +10,22 @@
 {% endblock %}
 
 {% block content %}
-    {% load markdown_deux_tags %}
-    {{ blog.content|markdown:'codehilite' }}
+    <div class="row">
+    <div class="col-md-8">
+        <div id="blog_content" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ blog.title }}</h3>
+            </div>
+            <div class="panel-body">
+                {% load markdown_deux_tags %}
+                {{ blog.content|markdown:'codehilite' }}
+            </div>
+        </div>
+    </div>
+    <div>
+        <div id="blog_nav" class="panel panel-default">
+            
+        </div>
+    </div>
+    </div>
 {% endblock %}
