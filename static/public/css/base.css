@@ -32,11 +32,14 @@ body {
   text-align: center;
 }
 
+.modal-content{
+  min-height: 768px;
+}
+
 /* Customize container */
 @media (min-width: 768px) {
   .container {
     max-width: 1024px;
-    min-height: 768px;
   }
 }
 .container-narrow > hr {
