@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect, Http404
-from .forms import UploadFileForm
+from .forms import UploadBlogForm
 from ..base.utils import save_file
 import os
 
@@ -11,14 +11,14 @@ def index(request):
 
 
 def upload_blog(request):
-    base_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/blog_file/')
+    blog_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/blog_file/')
     if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
+        form = UploadBlogForm(request.POST, request.FILES)
         if form.is_valid():
-            blog_fd = request.FILES['file']
+            blog_fd = form.data.get('file')
             file_name = form.data.get('file_name')
-            save_file(blog_fd, base_path + file_name)
+            save_file(blog_fd, blog_path + file_name)
             return HttpResponseRedirect('/')
     else:
-        form = UploadFileForm()
+        form = UploadBlogForm()
     return render(request, 'myblog/upload_blog.html', {'form': form})
