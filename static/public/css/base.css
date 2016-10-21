@@ -32,8 +32,8 @@ body {
   text-align: center;
 }
 
-.modal-content{
-  min-height: 768px;
+.my-content{
+  min-height: 512px;
 }
 
 /* Customize container */
