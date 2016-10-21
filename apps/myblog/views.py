@@ -20,4 +20,4 @@ def upload_blog(request):
             return render(request, 'myblog/index.html')
     else:
         form = UploadFileForm()
-    return render_to_response('myblog/upload_blog.html', {'form': form})
+        return render_to_response('myblog/upload_blog.html', {'form': form})
