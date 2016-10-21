@@ -24,19 +24,28 @@
 <body>
 
 <div class="container">
-    <div class="header clearfix">
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="{% url 'myblog:index' %}">主页</a></li>
-                <li role="presentation"><a href="#">博客</a></li>
-                <li role="presentation"><a href="#">记一笔</a></li>
-                <li role="presentation"><a href="#">关于</a></li>
-            </ul>
-        </nav>
-        <h3 class="text-muted">
-            {% block project_name %}{% endblock %}
-        </h3>
-    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">HelloWood</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{% url 'myblog:index' %}">主页</a></li>
+                    <li><a href="#about">博客</a></li>
+                    <li><a href="#contact">记一笔</a></li>
+                    <li><a href="#contact">关于</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
 
     <div class="my-content">
         {% block content %}{% endblock %}

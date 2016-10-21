@@ -4,10 +4,6 @@
 博客上传
 {% endblock %}
 
-{% block project_name %}
-    HELLOWOOD
-{% endblock %}
-
 {% block content %}
     <form action="{% url 'myblog:upload_blog' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
