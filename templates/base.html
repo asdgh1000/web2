@@ -7,45 +7,44 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../static/public/img/favicon.ico">
+    <link rel="icon" href="../../favicon.ico">
 
-    <title>{% block title %} {% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
 
-    <!-- Bootstrap core CSS -->
-    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="../static/public/css/base.css" rel="stylesheet">
+    <link href="{% static "public/css/base.css" %}" rel="stylesheet">
+
     {% block stylesheet %}{% endblock %}
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
     {% block script %}{% endblock %}
 </head>
 
 <body>
 
-<!-- The justified navigation menu is meant for single line per list item.
-     Multiple lines will require custom code not provided by Bootstrap. -->
-<nav>
-    <ul class="nav nav-justified navbar-fixed-top">
-        <li class="active"><a href="{% url 'myblog:index' %}">主页</a></li>
-        <li><a href="#">博客</a></li>
-        <li><a href="#">记一笔</a></li>
-        <li><a href="#">小工具</a></li>
-        <li><a href="#">关于</a></li>
-    </ul>
-</nav>
 <div class="container">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="#">主页</a></li>
+                <li role="presentation"><a href="#">博客</a></li>
+                <li role="presentation"><a href="#">记一笔</a></li>
+                <li role="presentation"><a href="#">关于</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">
+            {% block project_name %}{% endblock %}
+        </h3>
+    </div>
 
-    {%  block content %}{% endblock %}
+    {% block content %}{% endblock %}
+
+
+    <footer class="footer">
+        <p>Copyright © 2010-2016 WOOD'S BLOG - All Rights Reserved. </p>
+    </footer>
+
 </div> <!-- /container -->
-
-<footer class="footer">
-    <p>Copyright © 2010-2016 WOOD'S BLOG - All Rights Reserved. </p>
-</footer>
 </body>
 </html>
