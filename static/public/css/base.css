@@ -22,6 +22,7 @@ body > .container {
 .footer > .container {
     padding-left: 15px;
     padding-right: 15px;
+    text-align: center;
 }
 code {
     font-size: 80%;
