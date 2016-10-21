@@ -34,12 +34,14 @@ body {
 
 .my-content{
   min-height: 500px;
+  margin-top: 55px;
 }
 
 /* Customize container */
 @media (min-width: 768px) {
   .container {
     max-width: 1000px;
+    margin-top: 50px;
   }
 }
 .container-narrow > hr {

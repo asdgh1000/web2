@@ -17,8 +17,6 @@
     <link href="{% static "public/css/base.css" %}" rel="stylesheet">
 
     {% block stylesheet %}{% endblock %}
-
-    {% block script %}{% endblock %}
 </head>
 
 <body>
@@ -56,5 +54,7 @@
     </footer>
 
 </div> <!-- /container -->
+<script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+{% block script %}{% endblock %}
 </body>
 </html>
