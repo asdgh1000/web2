@@ -28,22 +28,20 @@
 
 <!-- The justified navigation menu is meant for single line per list item.
      Multiple lines will require custom code not provided by Bootstrap. -->
-<div class="masthead">
-    <nav>
-        <ul class="nav nav-justified navbar-fixed-top">
-            <li class="active"><a href="{% url 'myblog:index' %}">主页</a></li>
-            <li><a href="#">博客</a></li>
-            <li><a href="#">记一笔</a></li>
-            <li><a href="#">小工具</a></li>
-            <li><a href="#">关于</a></li>
-        </ul>
-    </nav>
-</div>
+<nav>
+    <ul class="nav nav-justified navbar-fixed-top">
+        <li class="active"><a href="{% url 'myblog:index' %}">主页</a></li>
+        <li><a href="#">博客</a></li>
+        <li><a href="#">记一笔</a></li>
+        <li><a href="#">小工具</a></li>
+        <li><a href="#">关于</a></li>
+    </ul>
+</nav>
 <div class="container">
 
     {%  block content %}{% endblock %}
-    <!-- Site footer -->
 </div> <!-- /container -->
+
 <footer class="footer">
     <p>Copyright © 2010-2016 WOOD'S BLOG - All Rights Reserved. </p>
 </footer>
