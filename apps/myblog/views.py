@@ -16,7 +16,7 @@ def upload_blog(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             blog_fd = request.FILES['file']
-            file_name = form.file_name
+            file_name = form.data.get('file_name')
             save_file(blog_fd, base_path + file_name)
             return HttpResponseRedirect('myblog/index.html')
         else:
