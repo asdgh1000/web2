@@ -5,22 +5,7 @@
 {% block content %}
     <form action="{% url 'myblog:upload_blog' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="form-group">
-            {{ form.file }}
-            <span>{{ form.file.errors }}</span>
-        </div>
-        <div class="form-group">
-            {{ form.file_name }}
-            <span>{{ form.file_name.errors }}</span>
-        </div>
-        <div class="form-group">
-            {{ form.title }}
-            <span>{{ form.title.errors }}</span>
-        </div>
-        <div class="form-group">
-            {{ form.cover_img }}
-            <span>{{ form.cover_img.errors }}</span>
-        </div>
+        {{ form }}
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
 {% endblock %}
