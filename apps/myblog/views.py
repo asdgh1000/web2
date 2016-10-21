@@ -1,4 +1,5 @@
 from django.shortcuts import render, render_to_response
+from django.http import HttpResponseRedirect
 from .forms import UploadFileForm
 from ..base.utils import save_file
 import os
@@ -17,7 +18,7 @@ def upload_blog(request):
             blog_fd = request.FILES['file']
             file_name = form.file_name
             save_file(blog_fd, base_path + file_name)
-            return render(request, 'myblog/index.html')
+            return HttpResponseRedirect('myblog/index.html')
     else:
         form = UploadFileForm()
     return render_to_response('myblog/upload_blog.html', {'form': form})
