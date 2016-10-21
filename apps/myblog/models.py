@@ -8,7 +8,7 @@ class BlogInfo(BaseModel):
     title = models.CharField(max_length=255, default='')
     file_path = models.CharField(max_length=255, default='')
     comment_count = models.IntegerField(default=0)
-    cover_img = models.CharField(max_length=255, default='')
+    cover_img = models.CharField(max_length=255, default='default.png')
     favor_count = models.IntegerField(default=0)
     dislike_count = models.IntegerField(default=0)
 
