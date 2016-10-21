@@ -7,6 +7,7 @@
 {% block stylesheet %}
     {% load static %}
     <link href="{% static 'myblog/css/pygments-friendly.css' %}" rel="stylesheet">
+    <link href="{% static 'myblog/css/blog_detail.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -22,9 +23,9 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3 col-md-offset-1">
         <div id="blog_nav" class="panel panel-default">
-
+            导航
         </div>
     </div>
     </div>
