@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from .forms import UploadFileForm
 from ..base.utils import save_file
 import os
@@ -19,6 +19,9 @@ def upload_blog(request):
             file_name = form.file_name
             save_file(blog_fd, base_path + file_name)
             return HttpResponseRedirect('myblog/index.html')
+        else:
+            raise Http404("表单验证失败")
+
     else:
         form = UploadFileForm()
     return render_to_response('myblog/upload_blog.html', {'form': form})
