@@ -1,3 +1,4 @@
+import io
 
 
 def save_file(fd, file_absolute_path):
@@ -12,9 +13,9 @@ def save_file(fd, file_absolute_path):
         for chunk in fd.chunks():
             destination.write(chunk)
 
+
 def md5(fd):
     import hashlib
-    import io
 
     byte_io = io.BytesIO()
     for chunk in fd.chunks():
@@ -23,3 +24,16 @@ def md5(fd):
     hashlibMd5 = hashlib.md5(byte_io.getvalue())
     byte_io.close()
     return hashlibMd5.hexdigest()
+
+
+def read_file_to_string(file_absolute_path):
+    string_io = io.StringIO()
+    with open(file_absolute_path, "r") as fd:
+        string_io.write(fd.read())
+
+    out_str = string_io.getvalue()
+    string_io.close()
+    return out_str
+
+
+

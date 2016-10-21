@@ -1,7 +1,7 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import HttpResponseRedirect, Http404
 from .forms import UploadBlogForm
-from ..base.utils import save_file, md5
+from ..base.utils import save_file, md5, read_file_to_string
 from .settings import *
 from .models import *
 import os
@@ -32,3 +32,19 @@ def upload_blog(request):
     else:
         form = UploadBlogForm()
     return render(request, 'myblog/upload_blog.html', {'form': form})
+
+
+def blog_detail(request, blog_info_id):
+    blog_info = get_object_or_404(BlogInfo, pk=blog_info_id)
+    blog_file_path = os.path.join(BLOG_FILE_PATH, blog_info.file_path)
+    blog_content = read_file_to_string(blog_file_path)
+    return render(request, 'myblog/blog_detail.html',
+                  {'blog':
+                       {'title': blog_info.title,
+                        'content': blog_content,
+                        'cover_img': blog_info.cover_img,
+                        'favor_count': blog_info.favor_count,
+                        'dislike_count': blog_info.dislike_count,
+                        }
+                   })
+

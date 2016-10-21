@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block stylesheet %}
+    <link href="../../static/css/pygments-friendly.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    {% load markdown_deux_tags %}
+    {{ blog.content|markdown:'codehilite' }}
+{% endblock %}
