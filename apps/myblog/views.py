@@ -22,7 +22,7 @@ def upload_blog(request):
         file_name = form.file_name
         if form.is_valid():
             save_file(blog_fd, base_path + file_name)
-            return HttpResponseRedirect('/success/url/')
+            return HttpResponseRedirect('/')
     else:
         form = UploadFileForm()
     return render_to_response('myblog/upload_blog.html', {'form': form})
