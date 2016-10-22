@@ -45,6 +45,8 @@ def blog_detail(request, blog_info_id):
                         'cover_img': blog_info.cover_img,
                         'favor_count': blog_info.favor_count,
                         'dislike_count': blog_info.dislike_count,
+                        'blog_info_id': blog_info_id,
+                        'url': request.get_full_path()
                         }
                    })
 
