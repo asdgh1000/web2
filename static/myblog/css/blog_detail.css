@@ -13,3 +13,8 @@
 .nav-panel {
     min-height: 300px;
 }
+
+#like_unlike {
+    text-align: center;
+    margin: 20px;
+}
