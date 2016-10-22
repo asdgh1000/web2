@@ -1,3 +1,4 @@
 .jumbotron {
-    background-image: url("../img/landing_page_main.gif");
+    background-image: url("../img/landing_page_main.png");
+    background-repeat: repeat-x;
 }
