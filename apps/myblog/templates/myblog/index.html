@@ -4,6 +4,11 @@
     首页
 {% endblock %}
 
+{% block stylesheet %}
+{% load static %}
+<link href="{% static 'myblog/css/index.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
     <div class="jumbotron">
         <h1>Hello Wood!</h1>
