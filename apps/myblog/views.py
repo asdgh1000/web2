@@ -15,10 +15,15 @@ def index(request):
     for blog in newest_bloginfo_list:
         newest_blog_list.append({
             'id': blog.id,
-            'title': blog.title
+            'title': blog.title,
         })
 
-    return render(request, 'myblog/index.html', {'newest_blog_list': newest_blog_list})
+    return render(request, 'myblog/index.html',
+                  {
+                      'newest_blog_list': newest_blog_list,
+                      'desc': "```c\n#include<stdio.h>\n\nint main(){\n\n    printf(\"Hello wood!\");\n   exit(0);\n}"
+                  }
+                  )
 
 
 def upload_blog(request):

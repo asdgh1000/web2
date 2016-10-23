@@ -8,15 +8,8 @@
     <div class="jumbotron">
         <h1>Hello Wood!</h1>
         <p class="lead">
-            <code>
-                include "stdio.h"
-
-                int main(){
-
-                    printf("Hello Wood!");
-                    exit(0);
-                }
-            </code>
+            {% load markdown_deux_tags %}
+            {{ desc | markdown: 'codehilite' }}
         </p>
     </div>
 
