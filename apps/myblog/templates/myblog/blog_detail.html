@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'myblog/blog_base.html' %}
 
 {% block title %}
 {{ blog.title }}
@@ -10,91 +10,44 @@
     <link href="{% static 'myblog/css/blog_detail.css' %}" rel="stylesheet">
 {% endblock %}
 
-{% block content %}
-<div class="row">
-    <div class="col-md-9" id="blog_content">
-        <h2>{{ blog.title }}</h2>
-        <hr/>
-            {% load markdown_deux_tags %}
-            {{ blog.content|markdown:'codehilite' }}
-    </div>
-    <div class="col-md-3">
-        <div class="panel panel-default nav-panel">
-            <div class="panel-heading">
-                <h3 class="panel-title">最热文章</h3>
-            </div>
-            <!-- 多说热评文章 start -->
-            <div class="ds-top-threads panel-body" data-range="weekly" data-num-items="5"></div>
-            <!-- 多说热评文章 end -->
-            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-            <script type="text/javascript">
-                var duoshuoQuery = {short_name:"hellowood"};
-                (function() {
-                    var ds = document.createElement('script');
-                    ds.type = 'text/javascript';ds.async = true;
-                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                    ds.charset = 'UTF-8';
-                    (document.getElementsByTagName('head')[0]
-                    || document.getElementsByTagName('body')[0]).appendChild(ds);
-                })();
-            </script>
-            <!-- 多说公共JS代码 end -->
+{% block blog_content %}
+    <h2>{{ blog.title }}</h2>
+    <hr/>
+    {% load markdown_deux_tags %}
+    {{ blog.content|markdown:'codehilite' }}
+
+    <div class="row">
+        <div class="col-md-9" id="like_unlike">
+            <span class="likebtn-wrapper" data-identifier="item_1"></span>
         </div>
-        <div class="panel panel-default nav-panel">
-            <div class="panel-heading">
-                <h3 class="panel-title">最新评论</h3>
-            </div>
-            <!-- 多说最新评论 start -->
-            <div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
-            <!-- 多说最新评论 end -->
-            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-            <script type="text/javascript">
-                var duoshuoQuery = {short_name:"hellowood"};
-                (function() {
-                    var ds = document.createElement('script');
-                    ds.type = 'text/javascript';ds.async = true;
-                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                    ds.charset = 'UTF-8';
-                    (document.getElementsByTagName('head')[0]
-                    || document.getElementsByTagName('body')[0]).appendChild(ds);
-                })();
-            </script>
-            <!-- 多说公共JS代码 end -->
-        </div>
+        <!-- LikeBtn.com BEGIN -->
+        <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
+        <!-- LikeBtn.com END -->
     </div>
-</div>
-<div class="row">
-    <div class="col-md-9" id="like_unlike">
-        <span class="likebtn-wrapper" data-identifier="item_1"></span>
-    </div>
-    <!-- LikeBtn.com BEGIN -->
-    <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
-    <!-- LikeBtn.com END -->
-</div>
-<div class="row blog-comment">
-     <div class="col-md-9 panel panel-default">
+    <div class="row blog-comment">
+        <div class="col-md-9 panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">评论:</h3>
             </div>
-         <div class="panel-body">
-             <!-- 多说评论框 start -->
-             <div class="ds-thread" data-thread-key="{{ blog.blog_info_id }}" data-title="{{ blog.title }}" data-url="http://blog.hellowood.net{{ blog.url }}"></div>
-             <!-- 多说评论框 end -->
-             <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-             <script type="text/javascript">
-                 var duoshuoQuery = {short_name:"hellowood"};
-                 (function() {
-                     var ds = document.createElement('script');
-                     ds.type = 'text/javascript';ds.async = true;
-                     ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
-                     ds.charset = 'UTF-8';
-                     (document.getElementsByTagName('head')[0]
-                     || document.getElementsByTagName('body')[0]).appendChild(ds);
-                 })();
-             </script>
-             <!-- 多说公共JS代码 end -->
-         </div>
+            <div class="panel-body">
+                <!-- 多说评论框 start -->
+                <div class="ds-thread" data-thread-key="{{ blog.blog_info_id }}" data-title="{{ blog.title }}" data-url="http://blog.hellowood.net{{ blog.url }}"></div>
+                <!-- 多说评论框 end -->
+                <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                <script type="text/javascript">
+                    var duoshuoQuery = {short_name:"hellowood"};
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';ds.async = true;
+                        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0]
+                        || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- 多说公共JS代码 end -->
+            </div>
+        </div>
     </div>
-</div>
 
 {% endblock %}
