@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, render_to_response
+from django.shortcuts import render, get_object_or_404, get_list_or_404, render_to_response
 from django.http import HttpResponseRedirect, Http404
 from .forms import UploadBlogForm
 from ..base.utils import save_file, md5, read_file_to_string
@@ -9,7 +9,16 @@ import os
 
 # Create your views here.
 def index(request):
-    return render(request, 'myblog/index.html')
+    newest_bloginfo_list = BlogInfo.objects.order_by("-created")[0:5]
+
+    newest_blog_list = []
+    for blog in newest_bloginfo_list:
+        newest_blog_list.append({
+            'id': blog.id,
+            'title': blog.title
+        })
+
+    return render(request, 'myblog/index.html', {'newest_blog_list': newest_blog_list})
 
 
 def upload_blog(request):
