@@ -4,6 +4,7 @@ from .forms import UploadBlogForm
 from ..base.utils import save_file, md5, read_file_to_string
 from .settings import *
 from .models import *
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import os
 
 
@@ -21,7 +22,6 @@ def index(request):
     return render(request, 'myblog/index.html',
                   {
                       'newest_blog_list': newest_blog_list,
-                      'desc': "```c\n#include<stdio.h>\n\nint main(){\n\n    printf(\"Hello wood!\");\n   exit(0);\n}"
                   }
                   )
 
@@ -64,3 +64,26 @@ def blog_detail(request, blog_info_id):
                         }
                    })
 
+
+def blog_list(request, page):
+    blog_info_list = BlogInfo.objects.all()
+    paginator = Paginator(blog_info_list, 25)  # Show 25 contacts per page
+
+    try:
+        blog_page_list = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        blog_page_list = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        blog_page_list = paginator.page(paginator.num_pages)
+
+    current_page = blog_page_list.number
+    total_page = blog_page_list.paginator.num_pages
+    first_page = current_page - 4 if current_page - 4 > 1 else 1
+    last_page = current_page + 4 if current_page + 4 < total_page else total_page
+
+    return render(request, 'myblog/blog_list.html',
+                  {'blog_list': blog_page_list,
+                   'page_range': range(first_page, last_page+1)
+                   })
