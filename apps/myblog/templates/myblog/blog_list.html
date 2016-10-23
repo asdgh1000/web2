@@ -5,9 +5,14 @@
 {% endblock %}
 
 {% block blog_content %}
+    <h3>全部博客</h3>
+    <hr/>
     <div class="list-group">
     {% for blog in blog_list %}
         <a href="{% url 'myblog:blog_detail' blog.id  %}" class="list-group-item">{{ blog.title }}</a>
+        <div style="text-align: center">
+            <span>{{ blog.created | date:"Y-m-d H:i:s" }}</span>
+        </div>
     {% endfor %}
     </div>
     <nav aria-label="Page navigation">

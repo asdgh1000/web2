@@ -66,7 +66,7 @@ def blog_detail(request, blog_info_id):
 
 
 def blog_list(request, page):
-    blog_info_list = BlogInfo.objects.all()
+    blog_info_list = BlogInfo.objects.order_by("-created")
     paginator = Paginator(blog_info_list, 25)  # Show 25 contacts per page
 
     try:

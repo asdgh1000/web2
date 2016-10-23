@@ -1,17 +1,5 @@
-#blog_content {
-    min-height: 600px;
-}
-
-#blog_nav {
-    min-height: 500px;
-}
-
 .blog-comment {
     margin-top: 20px;
-}
-
-.nav-panel {
-    min-height: 300px;
 }
 
 #like_unlike {

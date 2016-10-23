@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
+{% block stylesheet %}
+    {% load static %}
+    <link href="{% static 'myblog/css/blog_base.css' %}" rel="stylesheet">
+    {% block blog_stylesheet %}
+    {% endblock %}
+{% endblock %}
+
 {% block content %}
 <div class="row">
     <div class="col-md-9" id="blog_content">
