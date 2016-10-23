@@ -7,15 +7,19 @@
 {% block stylesheet %}
 {% load static %}
     <link href="{% static 'myblog/css/index.css' %}" rel="stylesheet">
-    <link href="{% static 'myblog/css/pygments-friendly.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
     <div class="jumbotron">
-        <h1>Hello Wood!</h1>
-        <p class="lead">
-            {% load markdown_deux_tags %}
-            {{ desc | markdown: 'codehilite' }}
+        <h1>工作的一周</h1>
+        <p class="lead"><br/>
+            <code>
+                #include&lt;stdio.h&gt;<br/><br>
+                int main(){<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;printf("Hello wood!");<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;exit(0);<br/>
+                }
+            </code>
         </p>
     </div>
 
@@ -26,7 +30,7 @@
                 <ul>
                 {% for blog in newest_blog_list %}
                     <li>
-                        <a href="{% url "myblog:blog_detail" blog.id %}">
+                        <a href="{% url 'myblog:blog_detail' blog.id %}">
                             {{ blog.title }}
                         </a>
                     </li>
