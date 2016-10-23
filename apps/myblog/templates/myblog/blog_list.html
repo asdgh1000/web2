@@ -9,9 +9,11 @@
     <hr/>
     <div class="list-group">
     {% for blog in blog_list %}
-        <a href="{% url 'myblog:blog_detail' blog.id  %}" class="list-group-item">{{ blog.title }}</a>
-        <div style="text-align: center">
-            <span>{{ blog.created | date:"Y-m-d H:i:s" }}</span>
+        <div class="row">
+            <a href="{% url 'myblog:blog_detail' blog.id  %}" class="list-group-item">{{ blog.title }}</a>
+            <div style="text-align: right">
+                <span>{{ blog.created | date:"Y-m-d H:i:s" }}</span>
+            </div>
         </div>
     {% endfor %}
     </div>
