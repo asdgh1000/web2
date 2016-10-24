@@ -24,22 +24,26 @@
     </div>
 
     <div class="row marketing">
-        <div class="col-lg-6">
-            <h4>最新博客</h4>
-            {% if newest_blog_list %}
-                <ul>
-                {% for blog in newest_blog_list %}
-                    <li>
-                        <a href="{% url 'myblog:blog_detail' blog.id %}">
-                            {{ blog.title }}
-                        </a>
-                    </li>
-                {% endfor %}
-                </ul>
+        <div class="col-md-6">
+            <div class="panel panel-default nav-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">最新博客</h4>
+                </div>
+                {% if newest_blog_list %}
+                    <ul>
+                        {% for blog in newest_blog_list %}
+                            <li class="list-group-item-text">
+                                <a href="{% url 'myblog:blog_detail' blog.id %}">
+                                    {{ blog.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
             {% endif %}
+            </div>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-md-6">
             <h4>热门博客</h4>
             <!-- 多说热评文章 start -->
             <div class="ds-top-threads panel-body" data-range="weekly" data-num-items="5"></div>
