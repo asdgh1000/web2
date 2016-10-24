@@ -1,0 +1,11 @@
+#blog_content {
+    min-height: 600px;
+}
+
+#blog_nav {
+    min-height: 500px;
+}
+
+.nav-panel {
+    min-height: 300px;
+}

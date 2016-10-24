@@ -9,11 +9,18 @@
     <hr/>
     <div class="list-group">
         {% for blog in blog_list %}
-            <a href="{% url 'myblog:blog_detail' blog.id  %}" class="list-group-item">
-                <h4 class="list-group-item-heading">{{ blog.title }}</h4>
-                <p class="list-group-item-text">{{ blog.abstract }}</p>
-                <p class="list-group-item-text" style="float: right">{{ blog.created | date:"Y-m-d H:i:s" }}</p>
-            </a>
+        <div class="row list-group-item" style="margin-bottom: 20px">
+            <div class="col-md-9">
+                <a href="{% url 'myblog:blog_detail' blog.id  %}">
+                    <h4 class="list-group-item-heading">{{ blog.title }}</h4>
+                </a>
+                <p style="min-height: 30px" class="list-group-item-text">{{ blog.abstract }}
+                </p>
+            </div>
+            <div class="col-md-3">
+                <span style="float: right">{{ blog.created | date:"发布于：Y年m月d日" }}</span>
+            </div>
+        </div>
         {% endfor %}
     </div>
     <nav aria-label="Page navigation">
