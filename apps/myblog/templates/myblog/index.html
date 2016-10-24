@@ -24,8 +24,7 @@
     </div>
 
     <div class="row marketing">
-        <div class="col-md-6">
-            <div class="panel panel-default nav-panel">
+        <div class="col-md-6 panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">最新博客</h4>
                 </div>
@@ -40,11 +39,12 @@
                         {% endfor %}
                     </ul>
             {% endif %}
-            </div>
         </div>
 
-        <div class="col-md-6">
-            <h4>热门博客</h4>
+        <div class="col-md-6 panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">热门博客</h4>
+            </div>
             <!-- 多说热评文章 start -->
             <div class="ds-top-threads panel-body" data-range="weekly" data-num-items="5"></div>
             <!-- 多说热评文章 end -->
