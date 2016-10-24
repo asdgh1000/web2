@@ -24,7 +24,8 @@
     </div>
 
     <div class="row marketing">
-        <div class="col-md-6 panel panel-default">
+        <div class="col-md-4 col-md-offset-1">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">最新博客</h4>
                 </div>
@@ -38,29 +39,31 @@
                             </li>
                         {% endfor %}
                     </ul>
-            {% endif %}
-        </div>
-
-        <div class="col-md-6 panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">热门博客</h4>
+                {% endif %}
             </div>
-            <!-- 多说热评文章 start -->
-            <div class="ds-top-threads panel-body" data-range="weekly" data-num-items="5"></div>
-            <!-- 多说热评文章 end -->
-            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-            <script type="text/javascript">
-                var duoshuoQuery = {short_name:"hellowood"};
-                (function() {
-                    var ds = document.createElement('script');
-                    ds.type = 'text/javascript';ds.async = true;
-                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                    ds.charset = 'UTF-8';
-                    (document.getElementsByTagName('head')[0]
-                    || document.getElementsByTagName('body')[0]).appendChild(ds);
-                })();
-            </script>
-            <!-- 多说公共JS代码 end -->
+        </div>
+        <div class="col-md-offset-2 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">热门博客</h4>
+                </div>
+                <!-- 多说热评文章 start -->
+                <div class="ds-top-threads panel-body" data-range="weekly" data-num-items="5"></div>
+                <!-- 多说热评文章 end -->
+                <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                <script type="text/javascript">
+                    var duoshuoQuery = {short_name:"hellowood"};
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';ds.async = true;
+                        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0]
+                        || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- 多说公共JS代码 end -->
+            </div>
         </div>
     </div>
 {% endblock %}
