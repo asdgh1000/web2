@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'apps.myblog.apps.MyblogConfig',
     'apps.user_manage.apps.UserManageConfig',
     'apps.tag_manage.apps.TagManageConfig',
+    'apps.my_tag.apps.MyTagConfig',
     'bootstrapform',
     'markdown_deux'
 
