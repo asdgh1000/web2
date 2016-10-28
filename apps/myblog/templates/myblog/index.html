@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block stylesheet %}
-{% load static %}
+    {% load static %}
     <link href="{% static 'myblog/css/index.css' %}" rel="stylesheet">
 {% endblock %}
 
@@ -14,55 +14,59 @@
         <h1>工作的一周</h1>
         <p class="lead"><br/>
             <code>
-                #include&lt;stdio.h&gt;<br/><br>
-                int main(){<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;printf("Hello wood!");<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;exit(0);<br/>
+                while(alive) <br/>
+                {</br>
+                &nbsp;&nbsp;&nbsp;&nbsp;eat();</br>
+                &nbsp;&nbsp;&nbsp;&nbsp;sleep();</br>
+                &nbsp;&nbsp;&nbsp;&nbsp;code();</br>
                 }
             </code>
         </p>
     </div>
 
-    <div class="row marketing">
-        <div class="col-md-5">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">最新博客</h4>
+    <div style="text-align: center">
+        <div class="row marketing">
+            <div class="col-md-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">最新博客</h4>
+                    </div>
+                    <hr/>
+                    {% if newest_blog_list %}
+                        <ul>
+                            {% for blog in newest_blog_list %}
+                                <li class="list-group-item-text">
+                                    <a href="{% url 'myblog:blog_detail' blog.id %}">
+                                        {{ blog.title }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                 </div>
-                {% if newest_blog_list %}
-                    <ul>
-                        {% for blog in newest_blog_list %}
-                            <li class="list-group-item-text">
-                                <a href="{% url 'myblog:blog_detail' blog.id %}">
-                                    {{ blog.title }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
             </div>
-        </div>
-        <div class="col-md-offset-1 col-md-5">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">热门博客</h4>
+            <div class="col-md-offset-1 col-md-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">热门博客</h4>
+                    </div>
+                    <!-- 多说热评文章 start -->
+                    <div class="ds-top-threads panel-body" data-range="weekly" data-num-items="5"></div>
+                    <!-- 多说热评文章 end -->
+                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                    <script type="text/javascript">
+                        var duoshuoQuery = {short_name:"hellowood"};
+                        (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0]
+                            || document.getElementsByTagName('body')[0]).appendChild(ds);
+                        })();
+                    </script>
+                    <!-- 多说公共JS代码 end -->
                 </div>
-                <!-- 多说热评文章 start -->
-                <div class="ds-top-threads panel-body" data-range="weekly" data-num-items="5"></div>
-                <!-- 多说热评文章 end -->
-                <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-                <script type="text/javascript">
-                    var duoshuoQuery = {short_name:"hellowood"};
-                    (function() {
-                        var ds = document.createElement('script');
-                        ds.type = 'text/javascript';ds.async = true;
-                        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                        ds.charset = 'UTF-8';
-                        (document.getElementsByTagName('head')[0]
-                        || document.getElementsByTagName('body')[0]).appendChild(ds);
-                    })();
-                </script>
-                <!-- 多说公共JS代码 end -->
             </div>
         </div>
     </div>
