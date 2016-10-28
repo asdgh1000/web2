@@ -29,17 +29,19 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">最新博客</h4>
                 </div>
-                {% if newest_blog_list %}
-                    <ul>
-                        {% for blog in newest_blog_list %}
-                            <li class="list-group-item-text">
-                                <a href="{% url 'myblog:blog_detail' blog.id %}">
-                                    {{ blog.title }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+                <div class="panel-body">
+                    {% if newest_blog_list %}
+                        <ul>
+                            {% for blog in newest_blog_list %}
+                                <li class="list-group-item-text">
+                                    <a href="{% url 'myblog:blog_detail' blog.id %}">
+                                        {{ blog.title }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
             </div>
         </div>
         <div class="col-md-5">
