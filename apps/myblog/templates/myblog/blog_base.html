@@ -6,10 +6,15 @@
     {% block blog_stylesheet %}
     {% endblock %}
 {% endblock %}
+{% block script %}
+    <script type="text/javascript">
+    $(".blog-content img").addClass('img-responsive');
+    </script>
+{% endblock %}
 
 {% block content %}
 <div class="row">
-    <div class="col-md-9" id="blog_content">
+    <div class="col-md-9 blog-content" id="blog_content">
         {% block blog_content %}
         {% endblock %}
     </div>
