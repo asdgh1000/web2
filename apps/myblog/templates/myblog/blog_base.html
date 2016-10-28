@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
+{% block metadata %}
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+{% endblock %}
+
 {% block stylesheet %}
     {% load static %}
     <link href="{% static 'myblog/css/blog_base.css' %}" rel="stylesheet">
+    <link rel="dns-prefetch" href="//static.duoshuo.com">
+    <link rel="dns-perfetch" href="//ofnuv3twy.bkt.clouddn.com">
     {% block blog_stylesheet %}
     {% endblock %}
 {% endblock %}
