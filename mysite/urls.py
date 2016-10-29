@@ -24,4 +24,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # robots.txt文件
     url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
+    # 站点地图
+    url(r'^sitemap\.txt$', TemplateView.as_view(template_name='sitemap.txt', content_type='text/plain')),
 ]
