@@ -6,9 +6,10 @@
     <div class="row">
         <a href="{% url "tag_manage:add_tag" %}" class="btn bg-primary">添加标签</a>
     </div>
+    <hr/>
     <div class="row">
         <div class="container-fluid"> {% for tag in tag_list %}
-            <a href="/blog_list?tag={{ tag.id }}" class="btn btn-default {% if priority == 0 %}btn-lg{% elif tag.priority == 2 %}btn-sm{% elif tag.priority == 3%}btn-xs{% endif %}">
+            <a href="/blog_list?tag={{ tag.id }}" class="btn btn-default {% if tag.priority == 0 %}btn-lg{% elif tag.priority == 2 %}btn-sm{% elif tag.priority == 3%}btn-xs{% endif %}">
                 {{ tag.tag_name }}
             </a>
         {% endfor %}
