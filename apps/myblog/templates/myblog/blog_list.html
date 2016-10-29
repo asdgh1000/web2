@@ -27,17 +27,17 @@
         <ul class="pagination">
             {% if blog_list.has_previous %}
                 <li>
-                    <a href="{% url 'myblog:blog_list' blog_list.previous_page_number %}" aria-label="上一页">
+                    <a href="/blog_list?page={{blog_list.previous_page_number}}" aria-label="上一页">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
             {% endif %}
             {% for i in page_range  %}
-                <li><a href="{% url 'myblog:blog_list' i %}" class="{% if i == blog_list.number %}active{% endif %}">{{ i }}</a></li>
+                <li><a href="/blog_list?page={{ i }}" class="{% if i == blog_list.number %}active{% endif %}">{{ i }}</a></li>
             {% endfor %}
             {% if blog_list.has_next %}
                 <li>
-                    <a href="{% url 'myblog:blog_list' blog_list.next_page_number %}" aria-label="下一页">
+                    <a href="/blog_list?page={{ blog_list.next_page_number }}" aria-label="下一页">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
