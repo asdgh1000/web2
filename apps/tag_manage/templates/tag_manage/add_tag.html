@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+    新增标签
+{% endblock %}
+{% block content %}
+    <form action="{% url 'tag_manage:add_tag' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% load bootstrap %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+{% endblock %}

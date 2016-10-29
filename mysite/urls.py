@@ -20,6 +20,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     # 默认目录
     url(r'^', include('apps.myblog.urls')),
+    url(r'^tag/', include('apps.tag_manage.urls')),
     # 管理目录
     url(r'^admin/', admin.site.urls),
     # robots.txt文件

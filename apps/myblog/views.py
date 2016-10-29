@@ -44,7 +44,7 @@ def upload_blog(request):
             blog_info.save()
             site_map_add_url("http://blog.hellowood.net/blog_detail/%d" % blog_info.id)
 
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect("/blog_detail/%d" % blog_info.id)
     else:
         form = UploadBlogForm()
     return render(request, 'myblog/upload_blog.html', {'form': form})
@@ -68,7 +68,13 @@ def blog_detail(request, blog_info_id):
 
 
 def blog_list(request):
-    blog_info_list = BlogInfo.objects.order_by("-created")
+
+    if 'tag' in request.GET:
+        blog_info_list = BlogInfo.objects.order_by("-created").\
+            filter(blogtagrelation__tag_id=request.GET['tag'])
+    else:
+        blog_info_list = BlogInfo.objects.order_by("-created")
+
     paginator = Paginator(blog_info_list, 25)  # Show 25 contacts per page
 
     if 'page' in request.GET:
