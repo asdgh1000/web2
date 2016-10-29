@@ -20,7 +20,7 @@ def add_list(request):
             tag.tag_name = form.data.get('tag_name')
             tag.priority = form.data.get('priority')
             tag.save()
-            return HttpResponseRedirect('/tag_list')
+            return HttpResponseRedirect('/tag')
     else:
         form = AddTagForm()
     return render(request, 'tag_manage/add_tag.html', {'form': form})
