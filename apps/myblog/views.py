@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404, render_to_response
 from django.http import HttpResponseRedirect, Http404
 from .forms import UploadBlogForm
-from ..base.utils import save_file, md5, read_file_to_string
+from ..base.utils import *
 from .settings import *
 from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -42,6 +42,8 @@ def upload_blog(request):
             blog_info.file_path = file_name
             blog_info.title = form.data.get('title')
             blog_info.save()
+            site_map_add_url("http://blog.hellowood.net/blog_detail/%d" % blog_info.id)
+
             return HttpResponseRedirect('/')
     else:
         form = UploadBlogForm()

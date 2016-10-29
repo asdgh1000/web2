@@ -36,4 +36,17 @@ def read_file_to_string(file_absolute_path):
     return out_str
 
 
+def site_map_add_url(url):
+    '''
+    在站点地图中添加新的url
+    :param url: 新的url
+    :return:
+    '''
+    from django.conf import settings
+    import os
+    with open(os.path.join(settings.BASE_DIR, 'templates'), "a") as fd:
+        fd.write(url+"\n")
+
+
+
 
