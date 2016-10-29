@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include,url
 from django.contrib import admin
+from django.views.generic import TemplateView
 
 urlpatterns = [
     # 默认目录
     url(r'^', include('apps.myblog.urls')),
     # 管理目录
     url(r'^admin/', admin.site.urls),
+    # robots.txt文件
+    url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
 ]
