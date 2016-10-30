@@ -136,7 +136,10 @@ def blog_edit(request):
     if request.method == 'POST':
         form = EditBlogForm(request.POST, request.FILES)
         if form.is_valid():
-            blog_info = BlogInfo()
+            if request.POST['blog_id']:
+                blog_info = get_object_or_404(BlogInfo, pk=request.POST['blog_id'])
+            else:
+                blog_info = BlogInfo()
             blog_info.title = request.POST['title']
             blog_info.abstract = request.POST['abstract']
             # if 'cover_img' in request.FILES:
@@ -148,8 +151,6 @@ def blog_edit(request):
             blog_file_path = os.path.join(BLOG_FILE_PATH, request.POST['file_name'])
             write_file(blog_file_path, request.POST['content'])
             blog_info.file_path = request.POST['file_name']
-            if request.POST['blog_id']:
-                blog_info.id = int(request.POST['blog_id'])
             blog_info.save()
             return HttpResponseRedirect("/blog_detail/%d" % blog_info.id)
     else:
