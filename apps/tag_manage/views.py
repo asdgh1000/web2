@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, get_object_or_404, get_list_or_404, render_to_response
 from django.http import HttpResponseRedirect, Http404
 from .models import Tag
@@ -12,6 +13,7 @@ def tag_list(request):
                   {'tag_list': tags})
 
 
+@permission_required('tag_manage.tag.add', login_url='/user/login')
 def add_list(request):
     if request.method == 'POST':
         form = AddTagForm(request.POST)

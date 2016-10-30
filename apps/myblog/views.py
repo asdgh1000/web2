@@ -27,7 +27,7 @@ def index(request):
                   )
 
 
-@permission_required('admin.')
+@permission_required('myblog.blog_info.add', login_url='/usr/login')
 def upload_blog(request):
     if request.method == 'POST':
         form = UploadBlogForm(request.POST, request.FILES)
