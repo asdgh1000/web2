@@ -66,3 +66,18 @@
         </ul>
     </nav>
 {% endblock %}
+{% block side_bar %}
+    <div class="panel panel-default nav-panel">
+        <div class="panel-heading">
+            <h4 class="panel-title">标签</h4>
+        </div>
+        <div class="panel-body">
+            <div class="container-fluid"> {% for tag in tag_list %}
+                <a href="/blog_list?tag={{ tag.id }}" class="btn btn-default {% if tag.priority == 0 %}btn-lg{% elif tag.priority == 2 %}btn-sm{% elif tag.priority == 3%}btn-xs{% endif %}">
+                    {{ tag.tag_name }}
+                </a>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

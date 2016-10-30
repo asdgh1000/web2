@@ -104,9 +104,11 @@ def blog_list(request):
     first_page = current_page - 4 if current_page - 4 > 1 else 1
     last_page = current_page + 4 if current_page + 4 < total_page else total_page
 
+    all_tag = Tag.objects.all()
     return render(request, 'myblog/blog_list.html',
                   {'blog_list': blog_page_list,
-                   'page_range': range(first_page, last_page + 1)
+                   'page_range': range(first_page, last_page + 1),
+                   "tag_list": all_tag,
                    })
 
 
