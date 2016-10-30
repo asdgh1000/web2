@@ -115,8 +115,8 @@ def add_blog_tag(request):
         if form.is_valid():
             blog_id = request.POST['blog_id']
             tag_ids = request.POST.getlist('tags')
-            tags = Tag.objects.filter(deleted=False).filter(blogtagrelation__blog_info_id=blog_id)
-            tag_old_ids = [x.id for x in tags]
+            tags = BlogTagRelation.objects.filter(deleted=False).filter(blog_info_id=blog_id)
+            tag_old_ids = [x.tag_id for x in tags]
             for tag_new_id in tag_ids:
                 if tag_new_id not in tag_old_ids:
                     BlogTagRelation(tag_id=tag_new_id, blog_info_id=blog_id).save()
