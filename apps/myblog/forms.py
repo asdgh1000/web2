@@ -37,7 +37,7 @@ class EditBlogForm(forms.Form):
         初始化对应field，并使其只读
         :return:
         '''
-        for key, value in field_map:
+        for (key, value) in field_map.items():
             self.fields[key].initial = value
             self.fields[key].widget.attrs['readonly'] = True
 
