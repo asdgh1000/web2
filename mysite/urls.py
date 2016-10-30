@@ -21,7 +21,7 @@ urlpatterns = [
     # 默认目录
     url(r'^', include('apps.myblog.urls')),
     url(r'^tag/', include('apps.tag_manage.urls')),
-    url(r'^usr/', include('apps.user_manage.urls')),
+    url(r'^user/', include('apps.user_manage.urls')),
     # 管理目录
     url(r'^admin/', admin.site.urls),
     # robots.txt文件
