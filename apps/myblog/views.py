@@ -80,7 +80,7 @@ def blog_list(request):
     else:
         blog_info_list = BlogInfo.objects.order_by("-created")
 
-    paginator = Paginator(blog_info_list, 25)  # Show 25 contacts per page
+    paginator = Paginator(blog_info_list, 6)  # Show 25 contacts per page
 
     if 'page' in request.GET:
         page = request.GET['page']

@@ -3,3 +3,11 @@
     background-size: cover;
     min-height: 450px;
 }
+
+.container-fluid a{
+    margin: 5px;
+}
+
+.panel {
+    margin-left: 10px;
+}

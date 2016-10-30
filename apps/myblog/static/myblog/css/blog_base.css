@@ -9,3 +9,7 @@
 .nav-panel {
     min-height: 300px;
 }
+
+.container-fluid a {
+    margin: 6px;
+}

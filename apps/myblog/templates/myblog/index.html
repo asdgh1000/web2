@@ -24,7 +24,7 @@
     </div>
 
     <div class="row marketing">
-        <div class="col-md-offset-1 col-md-5">
+        <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">最新博客</h4>
@@ -44,7 +44,22 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">标签</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="container-fluid"> {% for tag in tag_list %}
+                        <a href="/blog_list?tag={{ tag.id }}" class="btn btn-default {% if tag.priority == 0 %}btn-lg{% elif tag.priority == 2 %}btn-sm{% elif tag.priority == 3%}btn-xs{% endif %}">
+                            {{ tag.tag_name }}
+                        </a>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">热门博客</h4>
