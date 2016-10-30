@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, get_object_or_404, get_list_or_404, render_to_response
 from django.http import HttpResponseRedirect, Http404
-from .forms import UploadBlogForm
+from .forms import UploadBlogForm, AddBlogTagForm
 from ..base.utils import *
 from .settings import *
 from .models import *
@@ -56,6 +56,7 @@ def blog_detail(request, blog_info_id):
     blog_info = get_object_or_404(BlogInfo, pk=blog_info_id)
     blog_file_path = os.path.join(BLOG_FILE_PATH, blog_info.file_path)
     blog_content = read_file_to_string(blog_file_path)
+    tags = BlogTagRelation.objects.filter(deleted=False).filter(blog_info_id=blog_info.id)
     return render(request, 'myblog/blog_detail.html',
                   {'blog':
                        {'title': blog_info.title,
@@ -64,7 +65,8 @@ def blog_detail(request, blog_info_id):
                         'favor_count': blog_info.favor_count,
                         'dislike_count': blog_info.dislike_count,
                         'blog_info_id': blog_info_id,
-                        'url': request.get_full_path()
+                        'url': request.get_full_path(),
+                        'tags': tags
                         }
                    })
 
@@ -104,5 +106,30 @@ def blog_list(request):
                    })
 
 
+@permission_required("myblog.blog_tag_relation.add", login_url="/user/login")
+def add_blog_tag(request):
+    if request.method == 'POST':
+        form = AddBlogTagForm(request.POST)
+        if form.is_valid():
+            blog_id = request.POST['blog_id']
+            tag_ids = request.POST.getlist('tags')
+            tags = Tag.objects.filter(deleted=False).filter(blogtagrelation__blog_info_id=blog_id)
+            tag_old_ids = [x.id for x in tags]
+            for tag_new_id in tag_ids:
+                if tag_new_id not in tag_old_ids:
+                    BlogTagRelation(tag_id=tag_new_id, blog_info_id=blog_id).save()
+
+            return HttpResponseRedirect("/blog_detail/%d" % blog_id)
+    else:
+        if 'blog_id' not in request.GET:
+            raise Http404("需要博客id!")
+        blog_id = request.GET['blog_id']
+        tags = Tag.objects.filter(deleted=False).filter(blogtagrelation__blog_info_id=blog_id)
+        tag_ids = [x.id for x in tags]
+        form = AddBlogTagForm(initial={"tags": tag_ids})
+        form.blog_id = blog_id
+    return render(request, 'myblog/add_blog_tag.html', {'form': form})
+
+
 def blog_edit(request):
-    return request(request, 'myblog/blog_edit.html')
+    return render(request, 'myblog/blog_edit.html')

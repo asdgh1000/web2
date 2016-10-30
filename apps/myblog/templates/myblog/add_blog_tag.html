@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+    设置博客标签
+{% endblock %}
+{% block content %}
+    <form action="{% url 'myblog:add_blog_tag' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% load bootstrap %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-primary">设置</button>
+    </form>
+{% endblock %}

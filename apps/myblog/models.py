@@ -24,3 +24,6 @@ class BlogComment(BaseModel):
 class BlogTagRelation(BaseModel):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     blog_info = models.ForeignKey(BlogInfo, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ("tag", "blog_info")  # 这是重点
