@@ -54,6 +54,7 @@ def upload_blog(request):
 
 def blog_detail(request, blog_info_id):
     blog_info = get_object_or_404(BlogInfo, pk=blog_info_id)
+    blog_info.blogtagrelation_set
     blog_file_path = os.path.join(BLOG_FILE_PATH, blog_info.file_path)
     blog_content = read_file_to_string(blog_file_path)
     tag_relations = BlogTagRelation.objects.filter(deleted=False).filter(blog_info_id=blog_info.id)
