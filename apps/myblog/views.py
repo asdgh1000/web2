@@ -102,3 +102,7 @@ def blog_list(request):
                   {'blog_list': blog_page_list,
                    'page_range': range(first_page, last_page+1)
                    })
+
+
+def blog_edit(request):
+    return request(request, 'myblog/blog_edit.html')

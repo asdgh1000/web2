@@ -24,7 +24,12 @@
                 </p>
             </div>
             <div class="col-md-3">
-                <span style="float: right">{{ blog.created | date:"发布于：Y年m月d日" }}</span>
+                <div class="row">
+                    <span style="float: right">{{ blog.created | date:"发布于：Y年m月d日" }}</span>
+                </div>
+                <div class="row">
+                    <a class="btn bg-primary" href="{% url "myblog:blog_edit" blog.id %}">编辑</a>
+                </div>
             </div>
         </div>
         {% endfor %}
