@@ -22,7 +22,7 @@
                 </a>
                 {% if blog.blogtagrelation_set.all %}
                     <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
-                    {% for tag_relation in blog.blogtagrelation_set %}
+                    {% for tag_relation in blog.blogtagrelation_set.all %}
                         <a class="btn btn-default btn-xs" href="/blog_list?tag={{ tag_relation.tag.id }}">{{ tag_relation.tag.tag_name }}</a>
                     {% endfor %}
                 {% endif %}
