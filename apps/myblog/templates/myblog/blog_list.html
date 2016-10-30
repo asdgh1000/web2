@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block blog_content %}
-    {% if perms.myblog.bloginfo.add %}
+    {% if perms.bloginfo.add %}
     <div class="row">
         <a class="btn bg-primary" href="{% url "myblog:upload_blog" %}">上传博客</a>
     </div>
-    {% endif %}
     <hr/>
+    {% endif %}
     <h3>全部博客</h3>
     <hr/>
     <div class="list-group">
