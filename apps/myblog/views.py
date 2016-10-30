@@ -59,19 +59,21 @@ def blog_detail(request, blog_info_id):
     blog_content = read_file_to_string(blog_file_path)
     tag_relations = BlogTagRelation.objects.filter(deleted=False).filter(blog_info_id=blog_info.id)
     tags = [tag.tag for tag in tag_relations]
+    all_tag = Tag.objects.all()
 
     return render(request, 'myblog/blog_detail.html',
-                  {'blog':
-                       {'title': blog_info.title,
-                        'content': blog_content,
-                        'cover_img': blog_info.cover_img,
-                        'favor_count': blog_info.favor_count,
-                        'dislike_count': blog_info.dislike_count,
-                        'blog_info_id': blog_info_id,
-                        'url': request.get_full_path(),
-                        'tags': tags
-                        }
-                   })
+                  {'blog': {
+                      'title': blog_info.title,
+                      'content': blog_content,
+                      'cover_img': blog_info.cover_img,
+                      'favor_count': blog_info.favor_count,
+                      'dislike_count': blog_info.dislike_count,
+                      'blog_info_id': blog_info_id,
+                      'url': request.get_full_path(),
+                      'tags': tags
+                      },
+                      "tag_list": all_tag,
+                  })
 
 
 def blog_list(request):
