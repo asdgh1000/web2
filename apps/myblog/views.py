@@ -159,4 +159,4 @@ def blog_edit(request):
             blog_info = get_object_or_404(BlogInfo, pk=request.GET['blog_id'])
             form.init_field({"blog_id": blog_info.id, "file_name": blog_info.file_path})
 
-    return render(request, 'myblog/blog_edit.html', form)
+    return render(request, 'myblog/blog_edit.html', {"form": form})
