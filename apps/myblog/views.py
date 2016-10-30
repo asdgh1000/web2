@@ -56,7 +56,9 @@ def blog_detail(request, blog_info_id):
     blog_info = get_object_or_404(BlogInfo, pk=blog_info_id)
     blog_file_path = os.path.join(BLOG_FILE_PATH, blog_info.file_path)
     blog_content = read_file_to_string(blog_file_path)
-    tags = BlogTagRelation.objects.filter(deleted=False).filter(blog_info_id=blog_info.id)
+    tag_relations = BlogTagRelation.objects.filter(deleted=False).filter(blog_info_id=blog_info.id)
+    tags = [tag.tag for tag in tag_relations]
+    
     return render(request, 'myblog/blog_detail.html',
                   {'blog':
                        {'title': blog_info.title,
@@ -119,7 +121,7 @@ def add_blog_tag(request):
                 if tag_new_id not in tag_old_ids:
                     BlogTagRelation(tag_id=tag_new_id, blog_info_id=blog_id).save()
 
-            return HttpResponseRedirect("/blog_detail/%d" % blog_id)
+            return HttpResponseRedirect("/blog_detail/%s" % blog_id)
     else:
         if 'blog_id' not in request.GET:
             raise Http404("需要博客id!")
