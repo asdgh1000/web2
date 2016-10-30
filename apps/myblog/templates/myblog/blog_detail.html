@@ -13,11 +13,10 @@
 {% block blog_content %}
     <h2>{{ blog.title }}</h2>
     {% if blog.tags %}
-        <div class="row">
+        <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
         {% for tag in blog.tags %}
             <a class="btn btn-default btn-xs" href="/blog_list?tag={{ tag.id }}">{{ tag.tag_name }}</a>
         {% endfor %}
-        </div>
     {% endif %}
     <hr/>
     {% load markdown_deux_tags %}

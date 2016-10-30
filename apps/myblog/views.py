@@ -58,7 +58,7 @@ def blog_detail(request, blog_info_id):
     blog_content = read_file_to_string(blog_file_path)
     tag_relations = BlogTagRelation.objects.filter(deleted=False).filter(blog_info_id=blog_info.id)
     tags = [tag.tag for tag in tag_relations]
-    
+
     return render(request, 'myblog/blog_detail.html',
                   {'blog':
                        {'title': blog_info.title,
