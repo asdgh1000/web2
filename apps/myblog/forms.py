@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import CheckboxSelectMultiple
+
 from ..tag_manage.models import Tag
 
 
@@ -16,4 +18,4 @@ class AddBlogTagForm(forms.Form):
     tag_choices = [(tag.id, tag.tag_name) for tag in all_tags]
 
     blog_id = forms.IntegerField(label="文章id", disabled=True)
-    tags = forms.MultipleChoiceField(label="标签", choices=tag_choices)
+    tags = forms.MultipleChoiceField(label="标签", choices=tag_choices, widget=CheckboxSelectMultiple())

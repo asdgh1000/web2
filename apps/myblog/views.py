@@ -126,8 +126,7 @@ def add_blog_tag(request):
         blog_id = request.GET['blog_id']
         tags = Tag.objects.filter(deleted=False).filter(blogtagrelation__blog_info_id=blog_id)
         tag_ids = [x.id for x in tags]
-        form = AddBlogTagForm(initial={"tags": tag_ids})
-        form.blog_id = blog_id
+        form = AddBlogTagForm(initial={"tags": tag_ids, "blog_id": blog_id})
     return render(request, 'myblog/add_blog_tag.html', {'form': form})
 
 
