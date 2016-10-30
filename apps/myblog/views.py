@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, get_object_or_404, get_list_or_404, render_to_response
 from django.http import HttpResponseRedirect, Http404
-from .forms import UploadBlogForm, AddBlogTagForm
+from .forms import UploadBlogForm, AddBlogTagForm, EditBlogForm
 from ..base.utils import *
 from .settings import *
 from .models import *
@@ -54,7 +54,6 @@ def upload_blog(request):
 
 def blog_detail(request, blog_info_id):
     blog_info = get_object_or_404(BlogInfo, pk=blog_info_id)
-    blog_info.blogtagrelation_set
     blog_file_path = os.path.join(BLOG_FILE_PATH, blog_info.file_path)
     blog_content = read_file_to_string(blog_file_path)
     tag_relations = BlogTagRelation.objects.filter(deleted=False).filter(blog_info_id=blog_info.id)
@@ -133,5 +132,31 @@ def add_blog_tag(request):
     return render(request, 'myblog/add_blog_tag.html', {'form': form})
 
 
+@permission_required(["myblog.blog_info.add","myblog.blog_info.update"], login_url="/user/login")
 def blog_edit(request):
-    return render(request, 'myblog/blog_edit.html')
+    if request.method == 'POST':
+        form = EditBlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            blog_info = BlogInfo()
+            blog_info.title = request.POST['title']
+            blog_info.abstract = request.POST['abstract']
+            if 'cover_img' in request.FILES:
+                img_fd = request.FILES['cover_img']
+                img_name = md5(img_fd)
+                save_file(img_fd, os.path.join(BLOG_COVER_PATH, img_name))
+                blog_info.cover_img = img_name
+
+            blog_file_path = os.path.join(BLOG_FILE_PATH, request.POST['file_name'])
+            write_file(blog_file_path, request.POST['content'])
+            blog_info.file_path = request.POST['file_name']
+            if request.POST['blog_id']:
+                blog_info.id = int(request.POST['blog_id'])
+            blog_info.save()
+            return HttpResponseRedirect("/blog_detail/%d" % blog_info.id)
+    else:
+        form = EditBlogForm()
+        if 'blog_id' in request.GET:
+            blog_info = get_object_or_404(BlogInfo, pk=request.GET['blog_id'])
+            form.init_field({"blog_id": blog_info.id, "file_name": blog_info.file_path})
+
+    return render(request, 'myblog/blog_edit.html', form)

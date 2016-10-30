@@ -36,6 +36,11 @@ def read_file_to_string(file_absolute_path):
     return out_str
 
 
+def write_file(file_absolute_path, content):
+    with open(file_absolute_path, "w") as fd:
+        fd.write(content)
+
+
 def site_map_add_url(url):
     '''
     在站点地图中添加新的url
