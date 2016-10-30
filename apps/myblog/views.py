@@ -12,6 +12,7 @@ import os
 # Create your views here.
 def index(request):
     newest_bloginfo_list = BlogInfo.objects.order_by("-created")[0:5]
+    tags = get_list_or_404(Tag.objects.filter(deleted=False))
 
     newest_blog_list = []
     for blog in newest_bloginfo_list:
@@ -23,8 +24,8 @@ def index(request):
     return render(request, 'myblog/index.html',
                   {
                       'newest_blog_list': newest_blog_list,
-                  }
-                  )
+                      'tag_list': tags
+                  })
 
 
 @permission_required('myblog.blog_info.add', login_url='/user/login')
