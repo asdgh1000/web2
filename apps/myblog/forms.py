@@ -17,5 +17,5 @@ class AddBlogTagForm(forms.Form):
     all_tags = Tag.objects.filter(deleted=False).order_by("priority")
     tag_choices = [(tag.id, tag.tag_name) for tag in all_tags]
 
-    blog_id = forms.IntegerField(label="文章id", disabled=True)
+    blog_id = forms.IntegerField(label="文章id")
     tags = forms.MultipleChoiceField(label="标签", choices=tag_choices, widget=CheckboxSelectMultiple())
