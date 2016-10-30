@@ -5,9 +5,10 @@
 }
 
 .container-fluid a{
-    margin: 5px;
+    margin: 2px;
 }
 
 .panel {
     margin-left: 10px;
+    min-height: 400px;
 }
