@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, get_object_or_404, get_list_or_404, render_to_response
 from django.http import HttpResponseRedirect, Http404
 from .forms import UploadBlogForm
@@ -26,6 +27,7 @@ def index(request):
                   )
 
 
+@permission_required('admin.')
 def upload_blog(request):
     if request.method == 'POST':
         form = UploadBlogForm(request.POST, request.FILES)

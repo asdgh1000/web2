@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+    用户登陆
+{% endblock %}
+{% block content %}
+     {% if password_is_wrong %}
+        <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4>错误!</h4>用户名或密码错误
+        </div>
+    {% endif %}
+
+    <form action="{% url 'user_manage:login' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% load bootstrap %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-primary">登陆</button>
+    </form>
+
+{% endblock %}
