@@ -20,13 +20,15 @@
                 <a href="{% url 'myblog:blog_detail' blog.id  %}">
                     <h4 class="list-group-item-heading">{{ blog.title }}</h4>
                 </a>
-                {% if blog.blogtagrelation_set.all %}
-                    <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
-                    {% for tag_relation in blog.blogtagrelation_set.all %}
-                        <a class="btn btn-default btn-xs" href="/blog_list?tag={{ tag_relation.tag.id }}">{{ tag_relation.tag.tag_name }}</a>
-                    {% endfor %}
-                {% endif %}
-                <p style="min-height: 30px" class="list-group-item-text">{{ blog.abstract }}
+                <div style="margin: 5px">
+                    {% if blog.blogtagrelation_set.all %}
+                        <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                        {% for tag_relation in blog.blogtagrelation_set.all %}
+                            <a class="btn btn-default btn-xs" href="/blog_list?tag={{ tag_relation.tag.id }}">{{ tag_relation.tag.tag_name }}</a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <p style="min-height: 30px;" class="list-group-item-text">{{ blog.abstract }}
                 </p>
             </div>
             <div class="col-md-3">
