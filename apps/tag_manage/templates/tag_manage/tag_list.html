@@ -3,9 +3,11 @@
     所有标签
 {% endblock %}
 {% block blog_content %}
+    {% if perms.tag.add %}
     <div class="row">
         <a href="{% url "tag_manage:add_tag" %}" class="btn bg-primary">添加标签</a>
     </div>
+    {% endif %}
     <hr/>
     <div class="row">
         <div class="container-fluid"> {% for tag in tag_list %}
