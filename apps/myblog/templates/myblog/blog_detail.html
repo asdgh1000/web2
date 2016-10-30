@@ -22,14 +22,6 @@
     {% load markdown_deux_tags %}
     {{ blog.content|markdown:'codehilite' }}
 
-    <div class="row">
-        <div class="col-md-9" id="like_unlike">
-            <span class="likebtn-wrapper" data-identifier="item_1"></span>
-        </div>
-        <!-- LikeBtn.com BEGIN -->
-        <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
-        <!-- LikeBtn.com END -->
-    </div>
     <div class="row blog-comment">
         <div class="panel panel-default">
             <div class="panel-heading">
