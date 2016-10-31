@@ -1,6 +1,6 @@
 .jumbotron {
-    background-image: url("http://ofnuv3twy.bkt.clouddn.com/landing_page_main.jpg?imageMogr2/thumbnail/895x375!");
     background-size: cover;
+    background: url("http://ofnuv3twy.bkt.clouddn.com/landing_page_main.jpg?imageMogr2/thumbnail/895x375!") 100%, 100%;
     min-height: 200px;
 }
 
