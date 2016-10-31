@@ -8,10 +8,10 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="wood's blog">
     <meta name="author" content="wood">
+    {% load static %}
     <link rel="icon" href="{% static 'public/img/favicon.ico' %}">
 
     <title>{% block title %}{% endblock %}</title>
-    {% load static %}
 
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
