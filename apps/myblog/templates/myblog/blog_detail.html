@@ -14,7 +14,7 @@
     <h2>{{ blog.title }}</h2>
     {% if blog.author %}
         <div style="text-align: right">
-            <h4>-- by {{ blog.author }}</h4>
+            <h4>作者： <strong>{{ blog.author }}</strong></h4>
         </div>
     {% endif %}
     {% if blog.tags %}
