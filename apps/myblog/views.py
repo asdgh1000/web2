@@ -66,6 +66,7 @@ def blog_detail(request, blog_info_id):
     return render(request, 'myblog/blog_detail.html',
                   {'blog': {
                       'title': blog_info.title,
+                      'author': blog_info.author,
                       'content': blog_content,
                       'cover_img': blog_info.cover_img,
                       'favor_count': blog_info.favor_count,
