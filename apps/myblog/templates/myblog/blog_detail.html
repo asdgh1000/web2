@@ -13,8 +13,9 @@
 {% block blog_content %}
     <h2>{{ blog.title }}</h2>
     {% if blog.author %}
-            <span>-- by {{ blog.author }}</span>
-            <br/>
+        <div style="text-align: right">
+            <h4>-- by {{ blog.author }}</h4>
+        </div>
     {% endif %}
     {% if blog.tags %}
             <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
