@@ -24,8 +24,8 @@
             {% endfor %}
     {% endif %}
     <hr/>
-    {% load markdown_deux_tags %}
-    {{ blog.content|markdown:'codehilite' }}
+    {% load myTag %}
+    {{ blog.content|markdown }}
 
     <div class="row blog-comment">
         <div class="panel panel-default">

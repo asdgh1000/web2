@@ -42,8 +42,6 @@ INSTALLED_APPS = [
     'apps.tag_manage.apps.TagManageConfig',
     'apps.my_tag.apps.MyTagConfig',
     'bootstrapform',
-    'markdown_deux'
-
 ]
 
 MIDDLEWARE = [
