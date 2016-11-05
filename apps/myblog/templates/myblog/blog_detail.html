@@ -25,7 +25,7 @@
     {% endif %}
     <hr/>
     {% load myTag %}
-    {{ blog.content|markdown }}
+    {{ blog.content|markdown|safe }}
 
     <div class="row blog-comment">
         <div class="panel panel-default">

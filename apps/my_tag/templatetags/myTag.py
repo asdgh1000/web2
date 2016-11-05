@@ -54,6 +54,7 @@ class HighlightRenderer(mistune.Renderer):
         formatter = HtmlFormatter()
         return highlight(code, lexer, formatter)
 
+
 @register.filter
 def markdown(value):
     renderer = HighlightRenderer()
