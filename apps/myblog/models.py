@@ -6,6 +6,7 @@ from ..tag_manage.models import Tag
 
 class BlogInfo(BaseModel):
     title = models.CharField(max_length=255, default='')
+    author = models.CharField(max_length=50, default='')
     abstract = models.CharField(max_length=500, default='')
     file_path = models.CharField(max_length=255, default='')
     comment_count = models.IntegerField(default=0)

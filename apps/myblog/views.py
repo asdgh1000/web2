@@ -44,7 +44,9 @@ def upload_blog(request):
 
             blog_info.file_path = file_name
             blog_info.title = form.data.get('title')
+            blog_info.author = request.user.username
             blog_info.save()
+
             site_map_add_url("http://blog.hellowood.net/blog_detail/%d" % blog_info.id)
 
             return HttpResponseRedirect("/blog_detail/%d" % blog_info.id)
