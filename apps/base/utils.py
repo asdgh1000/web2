@@ -49,7 +49,7 @@ def site_map_add_url(url):
     '''
     from django.conf import settings
     import os
-    with open(os.path.join(settings.BASE_DIR, 'templates'), "a") as fd:
+    with open(os.path.join(settings.BASE_DIR, 'templates/sitemap.txt'), "a") as fd:
         fd.write(url+"\n")
 
 
