@@ -14,7 +14,7 @@ class Command(BaseCommand):
             redis_client = get_redis_connection()
             keys = redis_client.scan_iter("%s%s" % (BLOG_CLICK_PREFIX, '*'))
             for key in keys:
-                blog_id = key[len(BLOG_CLICK_PREFIX)-1:]
+                blog_id = key[len(BLOG_CLICK_PREFIX):]
                 logger.info("sync blog: %s", blog_id)
                 count = redis_client.getset("%s%s" % (BLOG_CLICK_PREFIX, blog_id), 0)
                 blogInfo = BlogInfo.objects.filter(id=blog_id)
