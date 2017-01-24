@@ -1,10 +1,10 @@
-from django.core.cache import cache
 from .models import BlogInfo
 from .settings import BLOG_CLICK_PREFIX
+from django_redis import get_redis_connection
 
 
 def sync_blog_click_count():
-    redis_client = cache.get_client()
+    redis_client = get_redis_connection()
     keys = redis_client.scan_iter("%s%s" % (BLOG_CLICK_PREFIX, '*'))
     for key in keys:
         blog_id = key[19:]

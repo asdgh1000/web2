@@ -6,7 +6,7 @@ from ..base.utils import *
 from .settings import *
 from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.core.cache import cache
+from django_redis import get_redis_connection
 import os
 
 
@@ -63,7 +63,7 @@ def blog_detail(request, blog_info_id):
     tag_relations = BlogTagRelation.objects.filter(deleted=False).filter(blog_info_id=blog_info.id)
     tags = [tag.tag for tag in tag_relations]
     all_tag = Tag.objects.all()
-    redis_client = cache.get_client()
+    redis_client = get_redis_connection()
     redis_client.incr("%s%s" % (BLOG_CLICK_PREFIX, blog_info_id))
 
     return render(request, 'myblog/blog_detail.html',
