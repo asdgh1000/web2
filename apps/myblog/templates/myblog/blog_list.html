@@ -23,7 +23,7 @@
                 </a>
                 <div style="margin: 5px">
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true">&nbsp;{{ blog.click_count }}</span>
-                    &nbsp;
+                    &emsp;
                     {% if blog.blogtagrelation_set.all %}
                         <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
                         {% for tag_relation in blog.blogtagrelation_set.all %}
