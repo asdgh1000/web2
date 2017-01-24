@@ -153,5 +153,5 @@ STATICFILES_DIRS = [
 ]
 
 CRONJOBS = [
-    ('*/1 * * * *', 'cron.myblog.sync_blog_click_count', '>>/var/log/sync_blog_click_count.log'),
+    ('*/1 * * * *', 'django.core.management.call_command',['syncblogclick'], {}, '>>/var/log/sync_blog_click_count.log'),
 ]
