@@ -17,7 +17,7 @@ class Command(BaseCommand):
                 blog_id = key[len(BLOG_CLICK_PREFIX)-1:]
                 logger.info("sync blog: %s", blog_id)
                 count = redis_client.getset("%s%s" % (BLOG_CLICK_PREFIX, blog_id), 0)
-                blogInfo = BlogInfo.objects.filter(blog_id=blog_id)
+                blogInfo = BlogInfo.objects.filter(id=blog_id)
                 blogInfo.click_count += count
                 blogInfo.save()
         except:
