@@ -6,6 +6,7 @@ from ..base.utils import *
 from .settings import *
 from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.cache import cache
 import os
 
 
@@ -62,6 +63,7 @@ def blog_detail(request, blog_info_id):
     tag_relations = BlogTagRelation.objects.filter(deleted=False).filter(blog_info_id=blog_info.id)
     tags = [tag.tag for tag in tag_relations]
     all_tag = Tag.objects.all()
+    cache.incr("%s%s" % (BLOG_CLICK_PREFIX, blog_info_id))
 
     return render(request, 'myblog/blog_detail.html',
                   {'blog': {
@@ -73,8 +75,9 @@ def blog_detail(request, blog_info_id):
                       'dislike_count': blog_info.dislike_count,
                       'blog_info_id': blog_info_id,
                       'url': request.get_full_path(),
-                      'tags': tags
-                      },
+                      'tags': tags,
+                      'click_count': blog_info.click_count,
+                  },
                       "tag_list": all_tag,
                   })
 

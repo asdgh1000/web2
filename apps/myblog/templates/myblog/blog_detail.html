@@ -17,12 +17,15 @@
             <h4>作者： <strong>{{ blog.author }}</strong></h4>
         </div>
     {% endif %}
-    {% if blog.tags %}
+    <div class="row">
+        <span class="glyphicon glyphicon-eye-open" aria-hidden="true">blog.click_count</span>
+        {% if blog.tags %}
             <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
             {% for tag in blog.tags %}
                 <a class="btn btn-default btn-xs" href="/blog_list?tag={{ tag.id }}">{{ tag.tag_name }}</a>
             {% endfor %}
-    {% endif %}
+        {% endif %}
+    </div>
     <hr/>
     {% load myTag %}
     {{ blog.content|markdown|safe }}

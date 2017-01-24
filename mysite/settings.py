@@ -79,15 +79,31 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mysite_db',
-        'USER': 'mysite',
-        'PASSWORD': '678952310',
-        'HOST': "localhost"
+    'default':{
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'mysite_db',
+            'USER': 'mysite',
+            'PASSWORD': '678952310',
+            'HOST': "localhost"
+        }
+}
+
+# redis cache
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/0",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "SOCKET_CONNECT_TIMEOUT": 5,
+            "SOCKET_TIMEOUT": 5
+        }
     }
 }
 
+# use redis as session
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

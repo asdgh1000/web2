@@ -13,6 +13,7 @@ class BlogInfo(BaseModel):
     cover_img = models.CharField(max_length=255, default='default.png')
     favor_count = models.IntegerField(default=0)
     dislike_count = models.IntegerField(default=0)
+    click_count = models.IntegerField(default=0)
 
 
 class BlogComment(BaseModel):
