@@ -63,10 +63,8 @@ def blog_detail(request, blog_info_id):
     tag_relations = BlogTagRelation.objects.filter(deleted=False).filter(blog_info_id=blog_info.id)
     tags = [tag.tag for tag in tag_relations]
     all_tag = Tag.objects.all()
-    try:
-        cache.incr("%s%s" % (BLOG_CLICK_PREFIX, blog_info_id))
-    except ValueError:
-        cache.set("%s%s" % (BLOG_CLICK_PREFIX, blog_info_id), 1, nx=True)
+    redis_client = cache.get_client()
+    redis_client.incr("%s%s" % (BLOG_CLICK_PREFIX, blog_info_id))
 
     return render(request, 'myblog/blog_detail.html',
                   {'blog': {

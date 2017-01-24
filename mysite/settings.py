@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'apps.tag_manage.apps.TagManageConfig',
     'apps.my_tag.apps.MyTagConfig',
     'bootstrapform',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -149,4 +150,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "apps/myblog/static"),
     os.path.join(BASE_DIR, "apps/tag_manage/static"),
     os.path.join(BASE_DIR, "apps/user_manage/static"),
+]
+
+CRONJOBS = [
+    ('*/1 * * * *', 'apps.myblog.cron.sync_blog_click_count', '>>/var/log/sync_blog_click_count.log'),
 ]
