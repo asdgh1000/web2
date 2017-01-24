@@ -1,5 +1,5 @@
-from .models import BlogInfo
-from .settings import BLOG_CLICK_PREFIX
+from apps.myblog.models import BlogInfo
+from apps.myblog.settings import BLOG_CLICK_PREFIX
 from django_redis import get_redis_connection
 
 
