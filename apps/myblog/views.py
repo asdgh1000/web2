@@ -77,7 +77,7 @@ def blog_detail(request, blog_info_id):
                       'blog_info_id': blog_info_id,
                       'url': request.get_full_path(),
                       'tags': tags,
-                      'click_count': blog_info.click_count,
+                      'click_count': blog_info.click_count + 1,
                   },
                       "tag_list": all_tag,
                   })
