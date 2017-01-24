@@ -18,7 +18,7 @@
         </div>
     {% endif %}
     <div class="row">
-        <span class="glyphicon glyphicon-eye-open" aria-hidden="true">blog.click_count</span>
+        <span class="glyphicon glyphicon-eye-open" aria-hidden="true" style="margin-right: 5px">{{ blog.click_count }}</span>
         {% if blog.tags %}
             <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
             {% for tag in blog.tags %}
