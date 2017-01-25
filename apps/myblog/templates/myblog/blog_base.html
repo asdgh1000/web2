@@ -28,35 +28,35 @@
     <div class="col-md-4">
         {% block side_bar %}
         {% endblock %}
-        <div class="panel panel-info nav-panel">
+        <div class="panel panel-primary nav-panel">
             <div class="panel-heading">
                 <h3 class="panel-title">最热文章</h3>
             </div>
             {% if hotest_blog_list %}
                 <ul class="list-group">
                     {% for blog in hotest_blog_list %}
-                        <a href="{% url 'myblog:blog_detail' blog.id %}" class="list-group-item list-group-item-info">
+                        <a href="{% url 'myblog:blog_detail' blog.id %}" class="list-group-item list-group-item-success">
                             {{ blog.title }}
                         </a>
                     {% endfor %}
                 </ul>
             {% endif %}
         </div>
-        <div class="panel panel-info nav-panel">
+        <div class="panel panel-primary nav-panel">
             <div class="panel-heading">
                 <h3 class="panel-title">最新文章</h3>
             </div>
             {% if newest_blog_list %}
                 <ul class="list-group">
                     {% for blog in newest_blog_list %}
-                        <a href="{% url 'myblog:blog_detail' blog.id %}" class="list-group-item list-group-item-info">
+                        <a href="{% url 'myblog:blog_detail' blog.id %}" class="list-group-item list-group-item-success">
                             {{ blog.title }}
                         </a>
                     {% endfor %}
                 </ul>
             {% endif %}
         </div>
-        <div class="panel panel-info nav-panel">
+        <div class="panel panel-primary nav-panel">
             <div class="panel-heading">
                 <h3 class="panel-title">最新评论</h3>
             </div>

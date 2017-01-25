@@ -17,14 +17,14 @@
 
     <div class="row marketing">
         <div class="col-md-3">
-            <div class="panel panel-info">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 class="panel-title">最新博客</h4>
                 </div>
                 {% if newest_blog_list %}
                     <ul class="list-group">
                         {% for blog in newest_blog_list %}
-                            <a href="{% url 'myblog:blog_detail' blog.id %}" class="list-group-item list-group-item-info">
+                            <a href="{% url 'myblog:blog_detail' blog.id %}" class="list-group-item list-group-item-success">
                                 {{ blog.title }}
                             </a>
                         {% endfor %}
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="panel panel-info">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 class="panel-title">标签</h4>
                 </div>
@@ -49,14 +49,14 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="panel panel-info">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 class="panel-title">热门博客</h4>
                 </div>
                 {% if hotest_blog_list %}
                     <ul class="list-group">
                         {% for blog in hotest_blog_list %}
-                            <a href="{% url 'myblog:blog_detail' blog.id %}" class="list-group-item list-group-item-info">
+                            <a href="{% url 'myblog:blog_detail' blog.id %}" class="list-group-item list-group-item-success">
                                 {{ blog.title }}
                             </a>
                         {% endfor %}
