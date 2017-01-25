@@ -20,15 +20,15 @@ def render_with_public_item(request, page, data=None):
 
     return render(request, page,
                   data.update({
-                      'newest_blog_list': [{blog.id, blog.title} for blog in newest_bloginfo_list],
-                      'hotest_blog_list': [{blog.id, blog.title} for blog in hotest_bloginfo_list],
+                      'newest_blog_list': [{"id": blog.id, "title": blog.title} for blog in newest_bloginfo_list],
+                      'hotest_blog_list': [{"id": blog.id, "title": blog.title} for blog in hotest_bloginfo_list],
                       'tag_list': tags
                   }))
 
 
 # Create your views here.
 def index(request):
-    return render_with_public_item(request, 'myblog/index.html', {})
+    return render_with_public_item(request, 'myblog/index.html')
 
 
 @permission_required('myblog.blog_info.add', login_url='/user/login')
