@@ -18,12 +18,13 @@ def render_with_public_item(request, page, data=None):
     if data is None:
         data = {}
 
-    return render(request, page,
-                  data.update({
-                      'newest_blog_list': [{"id": blog.id, "title": blog.title} for blog in newest_bloginfo_list],
-                      'hotest_blog_list': [{"id": blog.id, "title": blog.title} for blog in hotest_bloginfo_list],
-                      'tag_list': tags
-                  }))
+    data.update({
+        'newest_blog_list': [{"id": blog.id, "title": blog.title} for blog in newest_bloginfo_list],
+        'hotest_blog_list': [{"id": blog.id, "title": blog.title} for blog in hotest_bloginfo_list],
+        'tag_list': tags
+    })
+
+    return render(request, page, data)
 
 
 # Create your views here.
