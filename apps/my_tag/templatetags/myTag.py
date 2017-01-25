@@ -42,7 +42,7 @@ def truncate_chars(value, max_length):
         if len(value) > max_length:
                 truncd_val = value[:max_length]
                 return truncd_val + " ..."
-        return truncd_val + " ..."
+        return truncd_val
 
 
 class HighlightRenderer(mistune.Renderer):

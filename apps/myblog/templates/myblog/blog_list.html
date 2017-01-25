@@ -17,34 +17,39 @@
         {% load myTag %}
         {% for blog in blog_list %}
         <div class="row list-group-item">
-            <div class="col-md-9">
-                <a href="{% url 'myblog:blog_detail' blog.id  %}">
-                    <h4 class="list-group-item-heading">{{ blog.title }}</h4>
-                </a>
-                <div style="margin: 5px">
-                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true">&nbsp;{{ blog.click_count }}</span>
-                    &emsp;
-                    {% if blog.blogtagrelation_set.all %}
-                        <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
-                        {% for tag_relation in blog.blogtagrelation_set.all %}
-                            <a class="btn btn-default btn-xs" href="/blog_list?tag={{ tag_relation.tag.id }}">{{ tag_relation.tag.tag_name }}</a>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <p style="min-height: 30px;" class="list-group-item-text">{{ blog.abstract | truncate_chars:125 }}
-                </p>
-            </div>
-            <div class="col-md-3">
-                <div class="row">
+            <div class="row">
+                <span>
+                    <a href="{% url 'myblog:blog_detail' blog.id  %}">
+                        <h4 class="list-group-item-heading">{{ blog.title }}</h4>
+                    </a>
                     <span style="float: right">{{ blog.created | date:"发布于：Y年m月d日" }}</span>
-                </div>
-                {% if perms.bloginfo.add %}
-                <div class="row" style="text-align: right">
-                    <a class="btn bg-primary" href="/edit_blog?blog_id={{ blog.id }}">编辑</a>
-                    <a class="btn bg-primary" href="/add_blog_tag?blog_id={{ blog.id }}">设置博客标签</a>
-                </div>
+                </span>
+            </div>
+            <div style="margin: 5px">
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true">&nbsp;{{ blog.click_count }}</span>
+                &emsp;
+                {% if blog.blogtagrelation_set.all %}
+                    <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                    {% for tag_relation in blog.blogtagrelation_set.all %}
+                        <a class="btn btn-default btn-xs" href="/blog_list?tag={{ tag_relation.tag.id }}">{{ tag_relation.tag.tag_name }}</a>
+                    {% endfor %}
                 {% endif %}
             </div>
+            {% if perms.bloginfo.add %}
+                <div class="col-md-9">
+                    <p style="min-height: 30px;" class="list-group-item-text">{{ blog.abstract | truncate_chars:125 }}</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                    </div>
+                    <div class="row" style="text-align: right">
+                        <a class="btn bg-primary" href="/edit_blog?blog_id={{ blog.id }}">编辑</a>
+                        <a class="btn bg-primary" href="/add_blog_tag?blog_id={{ blog.id }}">设置博客标签</a>
+                    </div>
+                </div>
+            {% else %}
+                <p style="min-height: 30px;" class="list-group-item-text">{{ blog.abstract | truncate_chars:125 }}</p>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
