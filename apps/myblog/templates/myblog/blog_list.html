@@ -13,10 +13,10 @@
     {% endif %}
     <h3>全部博客</h3>
     <hr/>
-    <ul class="list-group">
+    <div class="list-group">
         {% load myTag %}
         {% for blog in blog_list %}
-        <li class="list-group-item" style="margin-bottom: 20px">
+        <div class="row list-group-item">
             <div class="col-md-9">
                 <a href="{% url 'myblog:blog_detail' blog.id  %}">
                     <h4 class="list-group-item-heading">{{ blog.title }}</h4>
@@ -45,9 +45,9 @@
                 </div>
                 {% endif %}
             </div>
-        </li>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
     <nav aria-label="Page navigation">
         <ul class="pagination">
             {% if blog_list.has_previous %}
