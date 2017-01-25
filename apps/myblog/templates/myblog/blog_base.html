@@ -32,22 +32,33 @@
             <div class="panel-heading">
                 <h3 class="panel-title">最热文章</h3>
             </div>
-            <!-- 多说热评文章 start -->
-            <div class="ds-top-threads panel-body" data-range="weekly" data-num-items="5"></div>
-            <!-- 多说热评文章 end -->
-            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-            <script type="text/javascript">
-                var duoshuoQuery = {short_name:"hellowood"};
-                (function() {
-                    var ds = document.createElement('script');
-                    ds.type = 'text/javascript';ds.async = true;
-                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                    ds.charset = 'UTF-8';
-                    (document.getElementsByTagName('head')[0]
-                    || document.getElementsByTagName('body')[0]).appendChild(ds);
-                })();
-            </script>
-            <!-- 多说公共JS代码 end -->
+            <div class="panel-body">
+                {% if hotest_blog_list %}
+                    <ul class="list-group">
+                        {% for blog in hotest_blog_list %}
+                            <a href="{% url 'myblog:blog_detail' blog.id %}" class="list-group-item">
+                                {{ blog.title }}
+                            </a>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div class="panel panel-default nav-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">最新文章</h3>
+            </div>
+            <div class="panel-body">
+                {% if newest_blog_list %}
+                    <ul class="list-group">
+                        {% for blog in newest_blog_list %}
+                            <a href="{% url 'myblog:blog_detail' blog.id %}" class="list-group-item">
+                                {{ blog.title }}
+                            </a>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
         </div>
         <div class="panel panel-default nav-panel">
             <div class="panel-heading">

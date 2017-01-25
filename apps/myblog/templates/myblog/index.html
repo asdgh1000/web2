@@ -23,13 +23,11 @@
                 </div>
                 <div class="panel-body">
                     {% if newest_blog_list %}
-                        <ul>
+                        <ul class="list-group">
                             {% for blog in newest_blog_list %}
-                                <li class="list-group-item-text">
-                                    <a href="{% url 'myblog:blog_detail' blog.id %}">
-                                        {{ blog.title }}
-                                    </a>
-                                </li>
+                                <a href="{% url 'myblog:blog_detail' blog.id %}" class="list-group-item">
+                                    {{ blog.title }}
+                                </a>
                             {% endfor %}
                         </ul>
                     {% endif %}
@@ -42,11 +40,12 @@
                     <h4 class="panel-title">标签</h4>
                 </div>
                 <div class="panel-body">
-                    <div class="container-fluid"> {% for tag in tag_list %}
-                        <a href="/blog_list?tag={{ tag.id }}" class="btn btn-default {% if tag.priority == 0 %}btn-lg{% elif tag.priority == 2 %}btn-sm{% elif tag.priority == 3%}btn-xs{% endif %}">
-                            {{ tag.tag_name }}
-                        </a>
-                    {% endfor %}
+                    <div class="container-fluid">
+                        {% for tag in tag_list %}
+                            <a href="/blog_list?tag={{ tag.id }}" class="btn btn-default {% if tag.priority == 0 %}btn-lg{% elif tag.priority == 2 %}btn-sm{% elif tag.priority == 3%}btn-xs{% endif %}">
+                                {{ tag.tag_name }}
+                            </a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -56,22 +55,17 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">热门博客</h4>
                 </div>
-                <!-- 多说热评文章 start -->
-                <div class="ds-top-threads panel-body" data-range="weekly" data-num-items="5"></div>
-                <!-- 多说热评文章 end -->
-                <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-                <script type="text/javascript">
-                    var duoshuoQuery = {short_name:"hellowood"};
-                    (function() {
-                        var ds = document.createElement('script');
-                        ds.type = 'text/javascript';ds.async = true;
-                        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                        ds.charset = 'UTF-8';
-                        (document.getElementsByTagName('head')[0]
-                        || document.getElementsByTagName('body')[0]).appendChild(ds);
-                    })();
-                </script>
-                <!-- 多说公共JS代码 end -->
+                <div class="panel-body">
+                    {% if hotest_blog_list %}
+                        <ul class="list-group">
+                            {% for blog in hotest_blog_list %}
+                                <a href="{% url 'myblog:blog_detail' blog.id %}" class="list-group-item">
+                                    {{ blog.title }}
+                                </a>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

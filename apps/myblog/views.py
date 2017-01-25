@@ -10,23 +10,25 @@ from django_redis import get_redis_connection
 import os
 
 
-# Create your views here.
-def index(request):
+def render_with_public_item(request, page, data=None):
     newest_bloginfo_list = BlogInfo.objects.order_by("-created")[0:5]
+    hotest_bloginfo_list = BlogInfo.objects.order_by("-click_count")[0:5]
     tags = get_list_or_404(Tag.objects.filter(deleted=False))
 
-    newest_blog_list = []
-    for blog in newest_bloginfo_list:
-        newest_blog_list.append({
-            'id': blog.id,
-            'title': blog.title,
-        })
+    if data is None:
+        data = {}
 
-    return render(request, 'myblog/index.html',
-                  {
-                      'newest_blog_list': newest_blog_list,
+    return render(request, page,
+                  data.update({
+                      'newest_blog_list': [{blog.id, blog.title} for blog in newest_bloginfo_list],
+                      'hotest_blog_list': [{blog.id, blog.title} for blog in hotest_bloginfo_list],
                       'tag_list': tags
-                  })
+                  }))
+
+
+# Create your views here.
+def index(request):
+    return render_with_public_item(request, 'myblog/index.html', {})
 
 
 @permission_required('myblog.blog_info.add', login_url='/user/login')
@@ -62,25 +64,24 @@ def blog_detail(request, blog_info_id):
     blog_content = read_file_to_string(blog_file_path)
     tag_relations = BlogTagRelation.objects.filter(deleted=False).filter(blog_info_id=blog_info.id)
     tags = [tag.tag for tag in tag_relations]
-    all_tag = Tag.objects.all()
     redis_client = get_redis_connection()
     redis_client.incr("%s%s" % (BLOG_CLICK_PREFIX, blog_info_id))
 
-    return render(request, 'myblog/blog_detail.html',
-                  {'blog': {
-                      'title': blog_info.title,
-                      'author': blog_info.author,
-                      'content': blog_content,
-                      'cover_img': blog_info.cover_img,
-                      'favor_count': blog_info.favor_count,
-                      'dislike_count': blog_info.dislike_count,
-                      'blog_info_id': blog_info_id,
-                      'url': request.get_full_path(),
-                      'tags': tags,
-                      'click_count': blog_info.click_count + 1,
-                  },
-                      "tag_list": all_tag,
-                  })
+    return render_with_public_item(request, 'myblog/blog_detail.html',
+                                   {
+                                       'blog': {
+                                           'title': blog_info.title,
+                                           'author': blog_info.author,
+                                           'content': blog_content,
+                                           'cover_img': blog_info.cover_img,
+                                           'favor_count': blog_info.favor_count,
+                                           'dislike_count': blog_info.dislike_count,
+                                           'blog_info_id': blog_info_id,
+                                           'url': request.get_full_path(),
+                                           'tags': tags,
+                                           'click_count': blog_info.click_count + 1,
+                                       },
+                                   })
 
 
 def blog_list(request):
@@ -111,12 +112,10 @@ def blog_list(request):
     first_page = current_page - 4 if current_page - 4 > 1 else 1
     last_page = current_page + 4 if current_page + 4 < total_page else total_page
 
-    all_tag = Tag.objects.all()
-    return render(request, 'myblog/blog_list.html',
-                  {'blog_list': blog_page_list,
-                   'page_range': range(first_page, last_page + 1),
-                   "tag_list": all_tag,
-                   })
+    return render_with_public_item(request, 'myblog/blog_list.html',
+                                   {'blog_list': blog_page_list,
+                                    'page_range': range(first_page, last_page + 1),
+                                    })
 
 
 @permission_required("myblog.blog_tag_relation.add", login_url="/user/login")
