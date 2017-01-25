@@ -1,16 +1,17 @@
 from django.contrib.auth.decorators import permission_required
-from django.shortcuts import render, get_object_or_404, get_list_or_404, render_to_response
-from django.http import HttpResponseRedirect, Http404
-from .models import Tag
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
 from .forms import AddTagForm
+from .models import Tag
+from ..base.views import render_with_public_item
+
 
 # Create your views here.
 
 
 def tag_list(request):
-    tags = get_list_or_404(Tag.objects.filter(deleted=False))
-    return render(request, "tag_manage/tag_list.html",
-                  {'tag_list': tags})
+    return render_with_public_item(request, "tag_manage/tag_list.html")
 
 
 @permission_required('tag_manage.tag.add', login_url='/user/login')
