@@ -16,7 +16,7 @@
     <div class="list-group">
         {% load myTag %}
         {% for blog in blog_list %}
-        <div class="row list-group-item">
+        <div class="row list-group-item" style="padding-bottom: 66px">
             <span>
                 <a href="{% url 'myblog:blog_detail' blog.id  %}">
                     <h4 class="list-group-item-heading">{{ blog.title }}</h4>
