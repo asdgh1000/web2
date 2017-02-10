@@ -61,7 +61,7 @@
                 </li>
             {% endif %}
             {% for i in page_range  %}
-                <li><a href="/blog_list?page={{ i }}" class="{% if i == blog_list.number %}active{% endif %}">{{ i }}</a></li>
+                <li {%if i == blog_list.number %}class="active"{% endif %}><a href="/blog_list?page={{ i }}">{{ i }}</a></li>
             {% endfor %}
             {% if blog_list.has_next %}
                 <li>
