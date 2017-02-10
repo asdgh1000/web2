@@ -32,6 +32,7 @@ def upload_blog(request):
 
             blog_info.file_path = file_name
             blog_info.title = form.data.get('title')
+            blog_info.abstract = form.data.get('abstract')
             blog_info.author = request.user.username
             blog_info.save()
 
@@ -76,7 +77,7 @@ def blog_list(request):
     else:
         blog_info_list = BlogInfo.objects.order_by("-created")
 
-    paginator = Paginator(blog_info_list, 6)  # Show 25 contacts per page
+    paginator = Paginator(blog_info_list, 5)  # Show 25 contacts per page
 
     if 'page' in request.GET:
         page = request.GET['page']
