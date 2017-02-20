@@ -28,7 +28,9 @@
     <hr/>
     {% load myTag %}
     <div class="panel panel-default">
-        {{ blog.content|markdown|safe }}
+        <div class="panel-body">
+            {{ blog.content|markdown|safe }}
+        </div>
     </div>
 
     <div class="row blog-comment">
