@@ -4,6 +4,7 @@ html {
     position: relative;
 }
 body {
+    background: url('http://ofnuv3twy.bkt.clouddn.com/bg.jpeg') fixed repeat center top #f0f0f0;
     margin-bottom: 60px;
 }
 .footer {
