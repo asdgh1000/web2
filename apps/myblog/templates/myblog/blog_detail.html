@@ -1,7 +1,7 @@
 {% extends 'myblog/blog_base.html' %}
 
 {% block title %}
-{{ blog.title }}
+    {{ blog.title }}
 {% endblock %}
 
 {% block blog_stylesheet %}
@@ -17,14 +17,15 @@
             <h4>作者： <strong>{{ blog.author }}</strong></h4>
         </div>
     {% endif %}
-        <span class="glyphicon glyphicon-eye-open" aria-hidden="true" style="margin-right: 5px;">&nbsp;{{ blog.click_count }}</span>
-        &emsp;
-        {% if blog.tags %}
-            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
-            {% for tag in blog.tags %}
-                <a class="btn btn-default btn-xs" href="/blog_list?tag={{ tag.id }}">{{ tag.tag_name }}</a>
-            {% endfor %}
-        {% endif %}
+    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"
+          style="margin-right: 5px;">&nbsp;{{ blog.click_count }}</span>
+    &emsp;
+    {% if blog.tags %}
+        <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+        {% for tag in blog.tags %}
+            <a class="btn btn-default btn-xs" href="/blog_list?tag={{ tag.id }}">{{ tag.tag_name }}</a>
+        {% endfor %}
+    {% endif %}
     <hr style="margin-top: 5px; margin-bottom: 2px"/>
     {% load myTag %}
     <div class="panel panel-default">
@@ -34,31 +35,36 @@
     </div>
 
     <div class="row blog-comment">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="ds-share" data-thread-key="{{ blog.blog_info_id }}" data-title="{{ blog.title }}" data-url="http://blog.hellowood.net{{ blog.url }}">
-                <div class="ds-share-inline">
-                    <ul  class="ds-share-icons-16">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="ds-share" data-thread-key="{{ blog.blog_info_id }}" data-title="{{ blog.title }}"
+                     data-url="http://blog.hellowood.net{{ blog.url }}">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
 
-                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-                        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-                        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-                        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-                        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a>
+                            </li>
+                            <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+                            <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+                            <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
 
-                    </ul>
-                    <div class="ds-share-icons-more">
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
                     </div>
                 </div>
                 <!-- 多说评论框 start -->
-                <div class="ds-thread" data-thread-key="{{ blog.blog_info_id }}" data-title="{{ blog.title }}" data-url="http://blog.hellowood.net{{ blog.url }}"></div>
+                <div class="ds-thread" data-thread-key="{{ blog.blog_info_id }}" data-title="{{ blog.title }}"
+                     data-url="http://blog.hellowood.net{{ blog.url }}"></div>
                 <!-- 多说评论框 end -->
                 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
                 <script type="text/javascript">
-                    var duoshuoQuery = {short_name:"hellowood"};
-                    (function() {
+                    var duoshuoQuery = {short_name: "hellowood"};
+                    (function () {
                         var ds = document.createElement('script');
-                        ds.type = 'text/javascript';ds.async = true;
+                        ds.type = 'text/javascript';
+                        ds.async = true;
                         ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
                         ds.charset = 'UTF-8';
                         (document.getElementsByTagName('head')[0]
@@ -79,7 +85,8 @@
         </div>
         <div class="panel-body">
             <div class="container-fluid"> {% for tag in tag_list %}
-                <a href="/blog_list?tag={{ tag.id }}" class="btn btn-default {% if tag.priority == 0 %}btn-lg{% elif tag.priority == 2 %}btn-sm{% elif tag.priority == 3%}btn-xs{% endif %}">
+                <a href="/blog_list?tag={{ tag.id }}"
+                   class="btn btn-default {% if tag.priority == 0 %}btn-lg{% elif tag.priority == 2 %}btn-sm{% elif tag.priority == 3 %}btn-xs{% endif %}">
                     {{ tag.tag_name }}
                 </a>
             {% endfor %}
