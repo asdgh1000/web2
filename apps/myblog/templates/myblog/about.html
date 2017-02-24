@@ -2,6 +2,19 @@
 {% block blog_stylesheet %}
     {% load static %}
     <link href="{% static 'public/css/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet">
+    <style>
+    .fa-hover a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    color: #222;
+    line-height: 32px;
+    height: 32px;
+    padding-left: 10px;
+    border-radius: 4px;
+    }
+    </style>
 {% endblock %}
 
 
@@ -14,7 +27,7 @@
     <hr/>
 
     <div class="fa-hover">
-        <a href="https://github.com/hello-wood">
+        <a href="https://github.com/hello-wood" target="_blank">
             <i class="fa fa-fw fa-github"></i>
             hello-wood
         </a>
