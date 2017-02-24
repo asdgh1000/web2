@@ -1,0 +1,17 @@
+{% extends 'myblog/blog_base.html' %}
+{% block blog_stylesheet %}
+    <link href="{% static 'public/css/font-awesome.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block title %}
+    关于
+{% endblock %}
+
+{% block blog_content %}
+    wood，后端开发，杭州
+    <hr/>
+    <a href="https://github.com/hello-wood">
+    <i class="fa fa-github">hello-wood</i>
+    </a>
+{% endblock %}

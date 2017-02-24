@@ -15,6 +15,9 @@ from ..base.views import render_with_public_item
 def index(request):
     return render_with_public_item(request, 'myblog/index.html')
 
+def about(request):
+    return render_with_public_item(request, 'myblog/about.html')
+
 
 @permission_required('myblog.blog_info.add', login_url='/user/login')
 def upload_blog(request):
@@ -166,3 +169,5 @@ def blog_edit(request):
             form.readonly_field(['blog_id', 'file_name'])
 
     return render(request, 'myblog/blog_edit.html', {"form": form})
+
+
